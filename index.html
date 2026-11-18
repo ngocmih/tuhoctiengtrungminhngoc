@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Tự Học Tiếng Trung HSK 1 — Lộ Trình 18 Buổi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <style>
+      button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
+    </style>
+    <style>
+      :root{
+        --bg:#f4f5f7; --surface:#ffffff; --surface2:#eceef1; --ink:#1d222b; --ink2:#4c5563; --ink3:#79828f;
+        --line:#dde1e7; --accent:#c23b22; --accent-ink:#a52f1a; --accent-soft:#fbeae5;
+        --jade:#1f7a5c; --jade-soft:#e2f2ec; --gold:#b97f14; --gold-soft:#faf0da;
+        --bad:#b3261e; --bad-soft:#fbe7e5; --shadow:0 6px 24px rgba(20,24,32,.08);
+        --r-lg:16px; --r-md:12px; --r-sm:8px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#121418; --surface:#1b1e24; --surface2:#242830; --ink:#eceef2; --ink2:#b6bdc9; --ink3:#8a93a1;
+          --line:#30353f; --accent:#e2603f; --accent-ink:#f0856a; --accent-soft:#3a231c;
+          --jade:#3fae87; --jade-soft:#173128; --gold:#d9a441; --gold-soft:#33290f;
+          --bad:#e5736b; --bad-soft:#3a1d1a; --shadow:0 6px 24px rgba(0,0,0,.35);
+        }
+      }
+      *{ box-sizing:border-box; }
+      html{ -webkit-text-size-adjust:100%; }
+      body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Be Vietnam Pro",system-ui,sans-serif; font-size:15.5px; line-height:1.55; }
+      .hz{ font-family:"Noto Sans SC","Be Vietnam Pro",sans-serif; }
+      button{ font:inherit; cursor:pointer; }
+      a{ color:var(--accent-ink); }
+
+      /* ---------- Layout ---------- */
+      .app{ display:grid; grid-template-columns:308px minmax(0,1fr); min-height:100dvh; }
+      .topbar{ display:none; }
+      aside{ background:var(--surface); border-right:1px solid var(--line); padding:18px 14px 28px; position:sticky; top:0; height:100dvh; overflow-y:auto; }
+      main{ padding:26px clamp(16px,4vw,44px) 70px; max-width:1060px; width:100%; margin:0 auto; }
+      @media (max-width:900px){
+        .app{ grid-template-columns:1fr; }
+        .topbar{ display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:40; background:var(--surface); border-bottom:1px solid var(--line); padding:8px 12px; }
+        aside{ display:none; position:fixed; inset:0 auto 0 0; width:min(86vw,320px); z-index:60; box-shadow:var(--shadow); }
+        aside.open{ display:block; }
+        .scrim{ display:none; position:fixed; inset:0; background:rgba(10,12,16,.45); z-index:55; }
+        .scrim.on{ display:block; }
+        main{ padding-top:18px; }
+      }
+      .scrim{ display:none; }
+
+      /* ---------- Sidebar ---------- */
+      .side-title{ font-weight:800; font-size:17px; letter-spacing:.1px; display:flex; align-items:center; gap:9px; }
+      .side-title .seal{ background:var(--accent); color:#fff; font-family:"Noto Sans SC",sans-serif; font-weight:900; width:34px; height:34px; border-radius:9px; display:grid; place-items:center; font-size:19px; flex:none; }
+      .side-sub{ color:var(--ink2); font-size:12.5px; margin:4px 0 14px 43px; }
+      .prog-wrap{ margin:0 0 6px; background:var(--surface2); border-radius:var(--r-md); padding:12px 14px; }
+      .prog-row{ display:flex; justify-content:space-between; font-size:13px; font-weight:600; }
+      .prog-bar{ height:9px; background:var(--surface); border-radius:99px; overflow:hidden; margin-top:8px; }
+      .prog-fill{ height:100%; background:var(--accent); border-radius:99px; transition:width .4s ease; }
+      .side-tools{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0 4px; }
+      .tool-btn{ display:flex; align-items:center; gap:8px; justify-content:center; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:9px 8px; font-weight:600; font-size:13.5px; color:var(--ink); min-height:44px; }
+      .tool-btn:hover{ border-color:var(--accent); color:var(--accent-ink); }
+      .tool-btn .cnt{ background:var(--accent); color:#fff; border-radius:99px; font-size:11.5px; padding:1px 7px; font-weight:700; }
+      .part-label{ font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); margin:18px 4px 7px; }
+      .litem{ display:flex; gap:10px; width:100%; text-align:left; background:transparent; border:1px solid transparent; border-radius:var(--r-md); padding:9px 10px; align-items:flex-start; color:var(--ink); }
+      .litem:hover{ background:var(--surface2); }
+      .litem.active{ background:var(--accent-soft); border-color:var(--accent); }
+      .litem .num{ flex:none; width:30px; height:30px; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-size:12.5px; font-weight:700; color:var(--ink2); background:var(--surface); }
+      .litem.done .num{ background:var(--jade); border-color:var(--jade); color:#fff; }
+      .litem.active .num{ border-color:var(--accent); color:var(--accent-ink); }
+      .litem .tt{ font-weight:600; font-size:14px; line-height:1.35; }
+      .litem .ss{ font-size:12px; color:var(--ink2); line-height:1.35; margin-top:1px; }
+      .litem.review .num{ border-radius:9px; background:var(--gold-soft); border-color:var(--gold); color:var(--gold); }
+      .litem.final .num{ border-radius:9px; background:var(--accent); border-color:var(--accent); color:#fff; }
+
+      /* ---------- Generic ---------- */
+      h1{ font-size:clamp(24px,4.5vw,34px); line-height:1.2; margin:0 0 6px; font-weight:800; }
+      h2{ font-size:20px; margin:26px 0 10px; font-weight:700; }
+      h3{ font-size:16.5px; margin:18px 0 8px; font-weight:700; }
+      .lede{ color:var(--ink2); max-width:65ch; margin:0 0 8px; }
+      .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:18px; }
+      .btn{ display:inline-flex; align-items:center; gap:8px; border-radius:var(--r-md); border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:9px 16px; font-weight:600; min-height:44px; }
+      .btn:hover{ border-color:var(--accent); }
+      .btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+      .btn.primary:hover{ background:var(--accent-ink); }
+      .btn.jade{ background:var(--jade); border-color:var(--jade); color:#fff; }
+      .btn.ghost{ background:transparent; }
+      .btn:disabled{ opacity:.45; cursor:default; }
+      .btn.small{ min-height:38px; padding:6px 12px; font-size:13.5px; }
+      .chip{ display:inline-flex; align-items:center; gap:6px; background:var(--surface2); border-radius:99px; padding:3px 11px; font-size:12.5px; font-weight:600; color:var(--ink2); }
+      .chip.red{ background:var(--accent-soft); color:var(--accent-ink); }
+      .chip.jade{ background:var(--jade-soft); color:var(--jade); }
+      .icon-btn{ width:40px; height:40px; flex:none; display:inline-grid; place-items:center; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--ink2); padding:0; }
+      .icon-btn:hover{ color:var(--accent-ink); border-color:var(--accent); }
+      .icon-btn.saved{ background:var(--gold-soft); border-color:var(--gold); color:var(--gold); }
+      svg.ic{ width:19px; height:19px; flex:none; }
+      .muted{ color:var(--ink2); } .small{ font-size:13px; }
+      .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+      .spacer{ flex:1; }
+
+      /* ---------- Home ---------- */
+      .stat-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; }
+      .stat{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:16px; }
+      .stat .big{ font-size:27px; font-weight:800; line-height:1.1; }
+      .stat .lbl{ color:var(--ink2); font-size:13px; margin-top:2px; }
+      .path-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; }
+      .path-card{ text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:16px; color:var(--ink); width:100%; }
+      .path-card:hover{ border-color:var(--accent); }
+      .path-card .tt{ font-weight:700; font-size:15.5px; margin:6px 0 3px; }
+      .path-card .ss{ color:var(--ink2); font-size:13px; }
+
+      /* ---------- Lesson ---------- */
+      .lesson-head{ display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; }
+      .lesson-head .hz-big{ font-size:clamp(30px,6vw,44px); font-weight:900; line-height:1.15; }
+      .tabs{ display:flex; gap:6px; flex-wrap:wrap; margin:20px 0 18px; border-bottom:2px solid var(--line); padding-bottom:0; }
+      .tab{ border:none; background:transparent; padding:10px 14px; font-weight:600; color:var(--ink2); border-bottom:3px solid transparent; margin-bottom:-2px; border-radius:8px 8px 0 0; min-height:44px; }
+      .tab:hover{ color:var(--ink); }
+      .tab.on{ color:var(--accent-ink); border-bottom-color:var(--accent); }
+      .vocab-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px; }
+      .vcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:14px; position:relative; }
+      .vcard .hz{ font-size:27px; font-weight:700; line-height:1.25; word-break:keep-all; }
+      .vcard .py{ color:var(--accent-ink); font-weight:600; margin-top:2px; }
+      .vcard .vi{ margin-top:3px; }
+      .vcard .hv{ color:var(--ink3); font-size:12.5px; }
+      .vcard .acts{ position:absolute; top:8px; right:8px; display:flex; gap:6px; }
+      .vcard .acts .icon-btn{ width:36px; height:36px; }
+      .tone-table{ width:100%; border-collapse:collapse; }
+      .tone-table th,.tone-table td{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+      .tone-table th{ font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink3); }
+      .tone-sig{ font-size:30px; font-weight:900; }
+      .grp{ margin-bottom:20px; }
+      .grp-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+      .grp-head .gname{ font-size:19px; font-weight:800; }
+      .sound-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:10px; }
+      .scard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:12px; display:flex; gap:10px; align-items:center; }
+      .scard .hz{ font-size:22px; font-weight:700; }
+      .grammar-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:18px; margin-bottom:14px; }
+      .formula{ background:var(--surface2); border-radius:var(--r-md); padding:11px 14px; font-weight:700; margin:8px 0; }
+      .ex-row{ display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-top:1px dashed var(--line); }
+      .ex-row:first-of-type{ border-top:none; }
+      .ex-row .hz{ font-size:18.5px; font-weight:600; }
+      .dlg{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:18px; margin-bottom:14px; }
+      .line{ display:flex; gap:10px; margin:12px 0; align-items:flex-start; }
+      .line .who{ flex:none; width:30px; height:30px; border-radius:50%; background:var(--surface2); display:grid; place-items:center; font-weight:800; font-size:13px; color:var(--ink2); }
+      .line.b .who{ background:var(--accent-soft); color:var(--accent-ink); }
+      .line .hz{ font-size:19px; font-weight:600; }
+      .line .py{ color:var(--accent-ink); font-size:14px; }
+      .line .vi{ color:var(--ink2); font-size:14px; }
+      .nav-row{ display:flex; justify-content:space-between; gap:10px; margin-top:30px; flex-wrap:wrap; }
+
+      /* ---------- Flashcard ---------- */
+      .fc-stage{ perspective:1200px; max-width:520px; margin:6px auto; }
+      .fc{ position:relative; width:100%; height:300px; transform-style:preserve-3d; transition:transform .5s ease; cursor:pointer; }
+      .fc.flip{ transform:rotateY(180deg); }
+      .fc-face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:var(--surface); border:1.5px solid var(--line); border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:22px; text-align:center; box-shadow:var(--shadow); }
+      .fc-back{ transform:rotateY(180deg); }
+      .fc .big-hz{ font-size:64px; font-weight:900; line-height:1.15; }
+      .fc .py{ font-size:21px; color:var(--accent-ink); font-weight:700; }
+      .fc .vi{ font-size:18px; }
+      .fc .hint{ color:var(--ink3); font-size:13px; }
+      .fc-nav{ display:flex; justify-content:center; gap:10px; align-items:center; margin-top:16px; flex-wrap:wrap; }
+
+      /* ---------- Quiz ---------- */
+      .quiz-q{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:18px; margin-bottom:14px; }
+      .quiz-q .q{ font-weight:700; font-size:16.5px; margin-bottom:12px; }
+      .quiz-q .q .hz{ font-size:19px; }
+      .opts{ display:grid; gap:9px; }
+      .opt{ text-align:left; border:1.5px solid var(--line); background:var(--surface); border-radius:var(--r-md); padding:12px 14px; font-weight:500; color:var(--ink); width:100%; min-height:48px; }
+      .opt:hover:not(:disabled){ border-color:var(--accent); }
+      .opt.right{ border-color:var(--jade); background:var(--jade-soft); }
+      .opt.wrong{ border-color:var(--bad); background:var(--bad-soft); }
+      .opt:disabled{ cursor:default; }
+      .expl{ margin-top:12px; background:var(--surface2); border-radius:var(--r-md); padding:11px 14px; font-size:14px; }
+      .wordbank{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+      .wchip{ border:1.5px solid var(--line); background:var(--surface); border-radius:99px; padding:8px 15px; font-size:18px; font-weight:600; min-height:44px; }
+      .wchip:hover{ border-color:var(--accent); }
+      .answer-line{ min-height:52px; border:1.5px dashed var(--line); border-radius:var(--r-md); padding:7px 10px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; background:var(--surface2); }
+      .answer-line .wchip{ background:var(--surface); border-color:var(--accent); }
+      .score-banner{ border-radius:var(--r-lg); padding:20px; text-align:center; margin-bottom:16px; }
+      .score-banner.good{ background:var(--jade-soft); border:1px solid var(--jade); }
+      .score-banner.mid{ background:var(--gold-soft); border:1px solid var(--gold); }
+      .score-banner .big{ font-size:32px; font-weight:800; }
+
+      /* ---------- Planner / search ---------- */
+      .field{ margin-bottom:14px; }
+      .field label{ display:block; font-weight:600; margin-bottom:6px; }
+      .field select,.field input[type="text"]{ width:100%; padding:11px 12px; border:1.5px solid var(--line); border-radius:var(--r-md); background:var(--surface); color:var(--ink); font:inherit; min-height:48px; }
+      .radio-row{ display:flex; gap:8px; flex-wrap:wrap; }
+      .radio-pill{ border:1.5px solid var(--line); border-radius:99px; padding:9px 16px; font-weight:600; background:var(--surface); color:var(--ink); min-height:44px; }
+      .radio-pill.on{ border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+      .plan-table{ width:100%; border-collapse:collapse; }
+      .plan-table th,.plan-table td{ text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+      .search-results{ margin-top:10px; display:grid; gap:8px; }
+      .sr-item{ display:flex; gap:12px; align-items:center; width:100%; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:10px 14px; color:var(--ink); min-height:52px; }
+      .sr-item:hover{ border-color:var(--accent); }
+      .empty{ text-align:center; color:var(--ink2); padding:34px 16px; border:1.5px dashed var(--line); border-radius:var(--r-lg); }
+      .toast{ position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(20px); background:var(--ink); color:var(--bg); padding:11px 18px; border-radius:99px; font-weight:600; font-size:14px; opacity:0; pointer-events:none; transition:.25s; z-index:99; max-width:92vw; text-align:center; }
+      .toast.on{ opacity:1; transform:translateX(-50%); }
+      @media (prefers-reduced-motion: reduce){ .fc{ transition:none; } *{ scroll-behavior:auto !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Mở danh sách buổi học">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <strong>Tự Học Tiếng Trung HSK 1</strong>
+      <span class="spacer"></span>
+      <span class="chip red" id="topProg">0/18 buổi</span>
+    </div>
+    <div class="app">
+      <div class="scrim" id="scrim"></div>
+      <aside id="sidebar" aria-label="Lộ trình học"></aside>
+      <main id="view" tabindex="-1"></main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= ICONS ================= */
+const IC = {
+  spk:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.2 6a9 9 0 0 1 0 12"/></svg>',
+  bm:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
+  bmFill:'<svg class="ic" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
+  check:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg>',
+  play:'<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4L19 12z"/></svg>',
+  book:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5"/><path d="M20 18H6.5"/></svg>',
+  spark:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M19 16.5l.8 2.2 2.2.8-2.2.8L19 22.5l-.8-2.2-2.2-.8 2.2-.8z"/></svg>',
+  refresh:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 3v4h-4"/></svg>',
+  search:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>'
+};
+</script>
+<script>
+/* ================= DỮ LIỆU 18 BUỔI ================= */
+const LESSONS = [
+/* ---------- BUỔI 1 ---------- */
+{ n:1, kind:'pron', title:'Thanh điệu & Phụ âm', sub:'Nền tảng phát âm · Phần 1',
+  intro:'Buổi đầu tiên và quan trọng nhất: nắm chắc 4 thanh điệu, thanh nhẹ và 21 thanh mẫu (phụ âm đầu). Đọc đúng thanh điệu ngay từ đầu sẽ giúp bạn tránh được lỗi phát âm khó sửa nhất về sau.',
+  tones:[
+    {sig:'ˉ', name:'Thanh 1 — thanh ngang', ex:'mā', hz:'妈', vi:'mẹ', desc:'Đọc cao, đều và kéo dài, như đang ngân nga một nốt nhạc cao. Giọng không lên không xuống.'},
+    {sig:'ˊ', name:'Thanh 2 — thanh lên', ex:'má', hz:'麻', vi:'cây gai dầu', desc:'Đọc từ thấp lên cao, giống giọng hỏi “hả?” khi ngạc nhiên trong tiếng Việt.'},
+    {sig:'ˇ', name:'Thanh 3 — thanh xuống–lên', ex:'mǎ', hz:'马', vi:'con ngựa', desc:'Đọc xuống thấp rồi hơi vồng lên cuối. Đây là thanh khó nhất với người Việt, cần luyện nhiều.'},
+    {sig:'ˋ', name:'Thanh 4 — thanh xuống', ex:'mà', hz:'骂', vi:'mắng, chửi', desc:'Đọc dứt khoát từ cao xuống thấp, ngắn và mạnh, như giọng ra lệnh.'},
+    {sig:'·', name:'Thanh nhẹ (khinh thanh)', ex:'ma', hz:'吗', vi:'(trợ từ hỏi)', desc:'Đọc nhẹ, ngắn, không dấu thanh; thường gặp ở âm tiết thứ hai: 妈妈 māma, 谢谢 xièxie, 朋友 péngyou.'}
+  ],
+  groups:[
+    {name:'b · p · m · f', note:'b đọc như “p” không bật hơi, p bật hơi mạnh. Đặt tay trước miệng: đọc p thấy luồng hơi rõ.', items:[['爸爸','bàba','bố'],['朋友','péngyou','bạn bè'],['妈妈','māma','mẹ'],['饭','fàn','cơm']]},
+    {name:'d · t · n · l', note:'d đọc như “t” không bật hơi, t bật hơi. n và l giống tiếng Việt.', items:[['大','dà','to, lớn'],['他','tā','anh ấy'],['你','nǐ','bạn'],['来','lái','đến']]},
+    {name:'g · k · h', note:'g đọc như “c” không bật hơi, k bật hơi. h đọc khò khè nhẹ ở cổ họng.', items:[['哥哥','gēge','anh trai'],['可乐','kělè','nước coca'],['好','hǎo','tốt'],['喝','hē','uống']]},
+    {name:'j · q · x', note:'Ba âm này chỉ đi với vận mẫu i/ü. j như “ch” nhẹ, q bật hơi, x như “x” nhưng đầu lưỡi hạ thấp.', items:[['家','jiā','nhà, gia đình'],['七','qī','số 7'],['小','xiǎo','nhỏ'],['谢谢','xièxie','cảm ơn']]},
+    {name:'zh · ch · sh · r', note:'Nhóm uốn lưỡi: đầu lưỡi cong lên chạm vòm miệng. r đọc gần như “r/d” hòa nhau, mềm.', items:[['中国','Zhōngguó','Trung Quốc'],['吃','chī','ăn'],['是','shì','là'],['人','rén','người']]},
+    {name:'z · c · s', note:'Nhóm đầu lưỡi phẳng, đối ngược nhóm uốn lưỡi ở trên. c bật hơi mạnh.', items:[['在','zài','ở, tại'],['菜','cài','món ăn, rau'],['三','sān','số 3'],['四','sì','số 4']]},
+    {name:'y · w', note:'Âm bán nguyên âm: y thay cho i đứng đầu âm tiết, w thay cho u đứng đầu âm tiết.', items:[['有','yǒu','có'],['我','wǒ','tôi'],['五','wǔ','số 5'],['也','yě','cũng']]}
+  ],
+  grammar:[
+    {t:'Cấu tạo một âm tiết tiếng Trung', f:'Thanh mẫu + Vận mẫu + Thanh điệu', d:'Mọi âm tiết tiếng Trung đều ghép từ phụ âm đầu (thanh mẫu), phần vần (vận mẫu) và một thanh điệu. Ví dụ: 好 = h (thanh mẫu) + ao (vận mẫu) + thanh 3 = hǎo. Nắm chắc ba phần này, bạn đọc được mọi phiên âm pinyin.', ex:[['妈','mā','mẹ — m + a + thanh 1'],['好','hǎo','tốt — h + ao + thanh 3']]},
+    {t:'Đại từ nhân xưng cơ bản', f:'我 wǒ · 你 nǐ · 他 tā · 她 tā · 我们 wǒmen · 你们 nǐmen · 他们 tāmen', d:'他 (anh ấy) và 她 (cô ấy) đọc giống hệt nhau, chỉ khác chữ viết. Thêm 们 men (thanh nhẹ) sau đại từ để tạo số nhiều.', ex:[['我是学生。','Wǒ shì xuésheng.','Tôi là học sinh.'],['他们是老师。','Tāmen shì lǎoshī.','Họ là giáo viên.']]}
+  ],
+  dlg:[{t:'Chào hỏi lần đầu', lines:[
+    ['A','你好！','Nǐ hǎo!','Xin chào!'],
+    ['B','你好！你好吗？','Nǐ hǎo! Nǐ hǎo ma?','Chào bạn! Bạn có khỏe không?'],
+    ['A','我很好，谢谢。你呢？','Wǒ hěn hǎo, xièxie. Nǐ ne?','Tôi rất khỏe, cảm ơn. Còn bạn?'],
+    ['B','我也很好。','Wǒ yě hěn hǎo.','Tôi cũng rất khỏe.']
+  ]}],
+  quiz:[
+    {q:'Thanh điệu thứ 3 (ˇ) được đọc như thế nào?', opts:['Cao và đều từ đầu đến cuối','Từ thấp lên cao','Xuống thấp rồi hơi vồng lên','Dứt khoát từ cao xuống thấp'], a:2, ex:'Thanh 3 đọc xuống–lên: bắt đầu vừa, hạ xuống thấp nhất rồi hơi vồng lên ở cuối.'},
+    {q:'Từ “马 mǎ” (con ngựa) mang thanh điệu nào?', opts:['Thanh 1','Thanh 2','Thanh 3','Thanh 4'], a:2, ex:'Dấu ˇ trên chữ a là thanh 3: mǎ.'},
+    {q:'Âm tiết thứ hai trong “妈妈 māma” đọc thế nào?', opts:['Thanh 1 như âm đầu','Thanh nhẹ, ngắn và nhẹ','Thanh 4','Thanh 2'], a:1, ex:'“ma” thứ hai là thanh nhẹ: đọc ngắn, nhẹ, không mang dấu thanh.'},
+    {q:'Thanh mẫu nào sau đây thuộc nhóm uốn lưỡi?', opts:['z','s','zh','x'], a:2, ex:'Nhóm uốn lưỡi gồm zh, ch, sh, r — đầu lưỡi cong lên khi phát âm.'},
+    {q:'Cặp nào là cặp đối lập bật hơi / không bật hơi?', opts:['b – p','m – f','n – l','j – x'], a:0, ex:'b (không bật hơi) và p (bật hơi) là cặp đối lập kinh điển, giống nhiều cặp khác: d–t, g–k, z–c, zh–ch.'},
+    {q:'“骂 mà” nghĩa là “mắng”. Từ này mang thanh nào?', opts:['Thanh ngang','Thanh lên','Thanh xuống–lên','Thanh xuống dứt khoát'], a:3, ex:'Dấu ˋ là thanh 4: đọc mạnh, dứt khoát từ cao xuống thấp.'}
+  ]
+},
+/* ---------- BUỔI 2 ---------- */
+{ n:2, kind:'pron', title:'Nguyên âm đơn & kép', sub:'Nền tảng phát âm · Phần 2',
+  intro:'Vận mẫu (phần vần) quyết định độ “tròn vành rõ chữ”. Buổi này học 6 nguyên âm đơn và các nguyên âm kép thường gặp nhất trong HSK 1.',
+  groups:[
+    {name:'Nguyên âm đơn: a · o · e', note:'a mở miệng rộng; o tròn môi; e đọc lưng chừng giữa “ơ” và “ê”.', items:[['妈','mā','mẹ'],['我','wǒ','tôi'],['鹅','é','con ngỗng'],['哥哥','gēge','anh trai']]},
+    {name:'Nguyên âm đơn: i · u · ü', note:'ü là âm khó nhất: tròn môi như u nhưng lưỡi ở vị trí i. ü luôn viết hai chấm khi đứng sau n, l; sau j, q, x thì bỏ hai chấm nhưng vẫn đọc ü.', items:[['一','yī','số 1'],['五','wǔ','số 5'],['鱼','yú','con cá'],['女','nǚ','nữ, con gái']]},
+    {name:'Nguyên âm kép: ai · ei · ao · ou', note:'Đọc liền một hơi, âm đầu rõ và dài hơn, âm sau nhẹ và ngắn.', items:[['白','bái','màu trắng'],['美','měi','đẹp'],['好','hǎo','tốt'],['有','yǒu','có']]},
+    {name:'Nguyên âm kép: ia · ie · ua · uo · üe', note:'Nhóm này xuất hiện rất nhiều trong từ HSK 1: 家 jiā, 谢 xiè, 国 guó, 月 yuè.', items:[['家','jiā','nhà'],['谢谢','xièxie','cảm ơn'],['国','guó','nước, quốc gia'],['月','yuè','tháng, mặt trăng']]},
+    {name:'Âm “er” và vần đặc biệt', note:'er đọc uốn lưỡi, gặp trong 二 èr (số 2), 儿子 érzi (con trai). Chữ 儿子 hay bị đọc sai thành thanh khác, hãy nghe kỹ mẫu.', items:[['二','èr','số 2'],['儿子','érzi','con trai'],['女儿','nǚ\'ér','con gái']]}
+  ],
+  grammar:[
+    {t:'Quy tắc viết ü', f:'n/l + ü giữ hai chấm · j/q/x + ü bỏ hai chấm', d:'Sau n và l, ü giữ nguyên hai chấm: 女 nǚ, 绿 lǜ. Sau j, q, x, hai chấm bị lược bỏ nhưng cách đọc không đổi: 鱼 yú, 去 qù, 学 xué. Đừng đọc “xuế” thành “xuê” — vẫn phải tròn môi.', ex:[['女','nǚ','nữ — giữ hai chấm'],['学','xué','học — bỏ hai chấm, đọc vẫn là üe']]},
+    {t:'Số đếm 1–10', f:'一 yī · 二 èr · 三 sān · 四 sì · 五 wǔ · 六 liù · 七 qī · 八 bā · 九 jiǔ · 十 shí', d:'Học thuộc lòng dãy số ngay từ đầu vì HSK 1 dùng số ở khắp nơi: tuổi, ngày tháng, giờ giấc, giá tiền. Lưu ý 四 sì (thanh 4) khác 是 shì ở thanh mẫu s/sh.', ex:[['三个人','sān gè rén','ba người'],['十岁','shí suì','mười tuổi']]}
+  ],
+  dlg:[{t:'Đếm số cùng nhau', lines:[
+    ['A','我们数一数：一、二、三……','Wǒmen shǔ yí shǔ: yī, èr, sān……','Chúng ta đếm thử nhé: một, hai, ba……'],
+    ['B','四、五、六、七、八、九、十！','Sì, wǔ, liù, qī, bā, jiǔ, shí!','Bốn, năm, sáu, bảy, tám, chín, mười!'],
+    ['A','你数得很好！','Nǐ shǔ de hěn hǎo!','Bạn đếm rất tốt!']
+  ]}],
+  quiz:[
+    {q:'Âm ü được phát âm như thế nào?', opts:['Như u bình thường','Tròn môi như u, lưỡi ở vị trí i','Như ư trong tiếng Việt','Như i kéo dài'], a:1, ex:'ü = môi tròn kiểu u + lưỡi đặt như khi phát âm i. Người Việt hay đọc nhầm thành “ư”.'},
+    {q:'Trong “学 xué”, vận mẫu thực chất là gì?', opts:['ue','üe','ie','ei'], a:1, ex:'Sau x, üe bỏ hai chấm thành ue khi viết, nhưng vẫn đọc là üe.'},
+    {q:'Từ nào sau đây có nguyên âm kép ao?', opts:['美 měi','好 hǎo','白 bái','有 yǒu'], a:1, ex:'hǎo chứa vận mẫu ao: đọc liền một hơi từ a sang o.'},
+    {q:'Số “bảy” trong tiếng Trung là…', opts:['八 bā','九 jiǔ','七 qī','六 liù'], a:2, ex:'七 qī = bảy. Tám là 八 bā, chín là 九 jiǔ.'},
+    {q:'“鱼 yú” nghĩa là gì?', opts:['Con ngỗng','Con cá','Con ngựa','Con mèo'], a:1, ex:'鱼 yú = cá. Âm đầu y ở đây thay cho ü đứng đầu âm tiết.'},
+    {q:'Cặp âm nào dễ nhầm nhau nhất với người Việt?', opts:['a – o','sì (四) – shì (是)','bā – bā','mā – mā'], a:1, ex:'四 sì và 是 shì chỉ khác nhau ở thanh mẫu s (phẳng) và sh (uốn lưỡi) — lỗi kinh điển của người Việt.'}
+  ]
+},
+/* ---------- BUỔI 3 ---------- */
+{ n:3, kind:'pron', title:'Nguyên âm mũi & Biến điệu', sub:'Nền tảng phát âm · Phần 3',
+  intro:'Buổi cuối của phần phát âm: vận mẫu mũi (kết thúc bằng -n/-ng) và ba quy tắc biến điệu bắt buộc phải thuộc — biến điệu thanh 3, biến điệu của 一 và của 不.',
+  groups:[
+    {name:'Vận mẫu mũi trước: -n', note:'Kết thúc bằng n: lưỡi chạm lợi trên. an, en, in, un, ün.', items:[['三','sān','số 3'],['人','rén','người'],['今天','jīntiān','hôm nay'],['云','yún','mây']]},
+    {name:'Vận mẫu mũi sau: -ng', note:'Kết thúc bằng ng: lưỡi rút về sau, âm vang ở mũi. Đừng nhầm -n với -ng: 三 sān (3) khác 上 shàng (trên).', items:[['上','shàng','trên, lên'],['朋友','péngyou','bạn bè'],['听','tīng','nghe'],['中国','Zhōngguó','Trung Quốc']]},
+    {name:'Biến điệu thanh 3 + thanh 3', note:'Khi hai thanh 3 đứng liền nhau, thanh 3 đầu tiên đọc thành thanh 2. Đây là quy tắc bắt buộc, không phải tùy chọn.', items:[['你好','nǐ hǎo → ní hǎo','xin chào'],['很好','hěn hǎo → hén hǎo','rất tốt'],['很忙','hěn máng','rất bận (máng vốn là thanh 2)'],['可以','kěyǐ → kéyǐ','có thể']]},
+    {name:'Biến điệu của 一 yī', note:'一 đứng một mình/đếm số đọc yī. Trước thanh 4 đọc thành yí; trước thanh 1, 2, 3 đọc thành yì.', items:[['一个','yí gè','một cái'],['一天','yì tiān','một ngày'],['一年','yì nián','một năm'],['一起','yìqǐ','cùng nhau']]},
+    {name:'Biến điệu của 不 bù', note:'不 trước thanh 4 đọc thành bú; trước các thanh còn lại giữ nguyên bù.', items:[['不是','bú shì','không phải'],['不去','bú qù','không đi'],['不好','bù hǎo','không tốt'],['不吃','bù chī','không ăn']]}
+  ],
+  grammar:[
+    {t:'Tổng kết biến điệu — 3 quy tắc vàng', f:'3+3 → 2+3 · 一: trước T4 → yí, trước T1/2/3 → yì · 不: trước T4 → bú', d:'Ba quy tắc này xuất hiện trong gần như mọi câu tiếng Trung cơ bản: 你好 ní hǎo, 不是 bú shì, 一个 yí gè. Khi đọc, hãy áp dụng tự động; khi viết pinyin trong bài thi nghe, vẫn viết thanh gốc.', ex:[['你不是学生吗？','Nǐ bú shì xuésheng ma?','Bạn không phải học sinh à?'],['我想喝一杯茶。','Wǒ xiǎng hē yì bēi chá.','Tôi muốn uống một cốc trà.']]},
+    {t:'Thanh nhẹ trong từ hai âm tiết', f:'Âm tiết 2 đọc nhẹ: 妈妈 māma · 谢谢 xièxie · 什么 shénme · 朋友 péngyou', d:'Nhiều từ hai âm tiết có âm hai là thanh nhẹ. Đọc âm hai ngắn và nhẹ hẳn, đừng gắn thanh điệu gốc cho nó (ví dụ 谢谢 không đọc “xiè xiè”).', ex:[['谢谢你！','Xièxie nǐ!','Cảm ơn bạn!'],['这是什么？','Zhè shì shénme?','Đây là cái gì?']]}
+  ],
+  dlg:[{t:'Luyện biến điệu qua hội thoại', lines:[
+    ['A','你好！你忙不忙？','Nǐ hǎo! Nǐ máng bù máng?','Chào bạn! Bạn có bận không?'],
+    ['B','我很忙。你呢？','Wǒ hěn máng. Nǐ ne?','Tôi rất bận. Còn bạn?'],
+    ['A','我不忙，我很好。','Wǒ bù máng, wǒ hěn hǎo.','Tôi không bận, tôi rất khỏe.']
+  ]}],
+  quiz:[
+    {q:'“你好” khi đọc thành tiếng phải phát âm là…', opts:['nǐ hǎo (giữ nguyên hai thanh 3)','ní hǎo','nì hǎo','nǐ hào'], a:1, ex:'Hai thanh 3 liền nhau: thanh đầu biến thành thanh 2 → ní hǎo.'},
+    {q:'“很忙 hěn máng” nghĩa là gì?', opts:['Rất tốt','Rất khỏe','Rất bận','Rất vui'], a:2, ex:'忙 máng = bận. Rất bận = 很忙. (Đừng nhầm với 很好 hěn hǎo = rất tốt.)'},
+    {q:'“不是” đọc đúng là…', opts:['bù shì','bú shì','bù sì','bú sì'], a:1, ex:'不 đứng trước thanh 4 (shì) phải biến điệu thành bú.'},
+    {q:'“一个” (một cái) đọc là…', opts:['yī gè','yì gè','yí gè','yí ge nhẹ cả hai'], a:2, ex:'一 đứng trước thanh 4 (gè) đọc thành yí.'},
+    {q:'Âm nào kết thúc bằng -ng?', opts:['三 sān','人 rén','上 shàng','今天 jīntiān'], a:2, ex:'shàng kết thúc bằng -ng (vận mẫu mũi sau). sān, rén, jīn đều kết thúc bằng -n.'},
+    {q:'Trong “谢谢 xièxie”, âm tiết thứ hai…', opts:['cũng là thanh 4','là thanh nhẹ','là thanh 1','là thanh 2'], a:1, ex:'谢谢 có âm hai là thanh nhẹ: đọc ngắn và nhẹ, không phải xiè xiè.'}
+  ]
+},
+/* ---------- BUỔI 4 · BÀI 1 ---------- */
+{ n:4, kind:'std', bai:1, title:'Xin chào', hanzi:'你好', sub:'Bài 1 · Chào hỏi & hỏi tên',
+  intro:'Bài học đầu tiên của giáo trình HSK 1: chào hỏi, hỏi tên và khẳng định “là” với động từ 是.',
+  vocab:[
+    ['你','nǐ','bạn, anh, chị','nhĩ'],['好','hǎo','tốt, khỏe','hảo'],['你好','nǐ hǎo','xin chào',''],
+    ['请','qǐng','mời, xin (lịch sự)','thỉnh'],['请问','qǐng wèn','xin hỏi',''],['问','wèn','hỏi','vấn'],
+    ['我','wǒ','tôi','ngã'],['叫','jiào','tên là, được gọi là','khiếu'],['什么','shénme','cái gì','thập ma'],
+    ['名字','míngzi','tên','danh tự'],['是','shì','là, phải','thị'],['老师','lǎoshī','thầy giáo, cô giáo','lão sư'],
+    ['吗','ma','(trợ từ nghi vấn)','ma'],['学生','xuésheng','học sinh, sinh viên','học sinh'],['也','yě','cũng','dã'],
+    ['不','bù','không','bất']
+  ],
+  grammar:[
+    {t:'Câu khẳng định với 是', f:'Chủ ngữ + 是 + danh từ', d:'是 là động từ “là”, dùng để nối chủ ngữ với một danh từ. Phủ định: thay 是 bằng 不是.', ex:[['我是学生。','Wǒ shì xuésheng.','Tôi là học sinh.'],['她是老师。','Tā shì lǎoshī.','Cô ấy là giáo viên.'],['我不是老师。','Wǒ bú shì lǎoshī.','Tôi không phải là giáo viên.']]},
+    {t:'Câu hỏi với 吗 và 什么', f:'Câu khẳng định + 吗？ · …什么…？', d:'Thêm 吗 (thanh nhẹ) vào cuối câu khẳng định sẽ thành câu hỏi Có/Không. Hỏi thông tin cụ thể thì dùng từ để hỏi 什么 (cái gì) đặt đúng vị trí của thông tin cần hỏi.', ex:[['你是老师吗？','Nǐ shì lǎoshī ma?','Bạn là giáo viên à?'],['你叫什么名字？','Nǐ jiào shénme míngzi?','Bạn tên là gì?']]}
+  ],
+  dlg:[
+    {t:'Làm quen', lines:[
+      ['A','你好！','Nǐ hǎo!','Xin chào!'],
+      ['B','你好！请问，你叫什么名字？','Nǐ hǎo! Qǐng wèn, nǐ jiào shénme míngzi?','Chào bạn! Xin hỏi, bạn tên là gì?'],
+      ['A','我叫李月。','Wǒ jiào Lǐ Yuè.','Tôi tên là Lý Nguyệt.'],
+      ['B','你好，李月！','Nǐ hǎo, Lǐ Yuè!','Chào Lý Nguyệt!']
+    ]},
+    {t:'Bạn là giáo viên à?', lines:[
+      ['A','你是老师吗？','Nǐ shì lǎoshī ma?','Bạn là giáo viên à?'],
+      ['B','我不是老师，我是学生。','Wǒ bú shì lǎoshī, wǒ shì xuésheng.','Tôi không phải giáo viên, tôi là học sinh.'],
+      ['A','我也是学生。','Wǒ yě shì xuésheng.','Tôi cũng là học sinh.']
+    ]}
+  ],
+  quiz:[
+    {q:'Chọn câu đúng: “Tôi không phải là học sinh.”', opts:['我不是学生。','我不学生。','我是学生不。','我没是学生。'], a:0, ex:'Phủ định của 是 là 不是: 我不是学生。'},
+    {q:'“请问” thường dùng khi nào?', opts:['Khi tạm biệt','Khi muốn hỏi một cách lịch sự','Khi cảm ơn','Khi xin lỗi'], a:1, ex:'请问 = “xin hỏi”, đặt đầu câu để hỏi lịch sự.'},
+    {order:['我','叫','大卫'], vi:'Tôi tên là Đại Vệ.', ex:'Mẫu câu: 我叫 + tên.'},
+    {order:['你','是','老师','吗'], vi:'Bạn là giáo viên à?', ex:'Câu hỏi Có/Không: câu khẳng định + 吗 ở cuối.'}
+  ]
+},
+/* ---------- BUỔI 5 · BÀI 2 ---------- */
+{ n:5, kind:'std', bai:2, title:'Cảm ơn & tạm biệt', hanzi:'谢谢你', sub:'Bài 2 · Lời cảm ơn, xin lỗi',
+  intro:'Học cách cảm ơn, đáp lại lời cảm ơn, xin lỗi và chào tạm biệt — những câu dùng hằng ngày ngay từ ngày đầu học.',
+  vocab:[
+    ['谢谢','xièxie','cảm ơn','tạ'],['不客气','bú kèqi','không có gì (đáp lời cảm ơn)',''],
+    ['客气','kèqi','khách sáo, lịch sự','khách khí'],['对不起','duì bù qǐ','xin lỗi',''],
+    ['没关系','méi guānxi','không sao đâu',''],['再见','zàijiàn','tạm biệt','tái kiến'],
+    ['小姐','xiǎojie','cô (gọi phụ nữ trẻ)','tiểu thư'],['先生','xiānsheng','ông, ngài (gọi nam giới)','tiên sinh'],
+    ['坐','zuò','ngồi','tọa'],['请坐','qǐng zuò','mời ngồi',''],['没','méi','không (phủ định của 有)','một'],
+    ['关系','guānxi','quan hệ','quan hệ']
+  ],
+  grammar:[
+    {t:'Đáp lại lời cảm ơn và lời xin lỗi', f:'谢谢 → 不客气 · 对不起 → 没关系', d:'Hai cặp câu đáp “bất di bất dịch”: ai nói 谢谢 thì đáp 不客气 (đừng khách sáo); ai nói 对不起 thì đáp 没关系 (không sao). Lưu ý 不 trong 不客气 biến điệu thành bú vì 客 kè là thanh 4.', ex:[['谢谢你！——不客气。','Xièxie nǐ! —— Bú kèqi.','Cảm ơn bạn! — Không có gì.'],['对不起！——没关系。','Duì bù qǐ! —— Méi guānxi.','Xin lỗi! — Không sao đâu.']]},
+    {t:'Hỏi ngược lại với 呢', f:'Đại từ / danh từ + 呢？', d:'呢 đặt sau một danh từ hoặc đại từ để hỏi ngược lại “còn … thì sao?”, thay cho việc lặp lại cả câu hỏi.', ex:[['我很好，你呢？','Wǒ hěn hǎo, nǐ ne?','Tôi rất khỏe, còn bạn?'],['我是学生，他呢？','Wǒ shì xuésheng, tā ne?','Tôi là học sinh, còn anh ấy?']]}
+  ],
+  dlg:[
+    {t:'Cảm ơn thầy', lines:[
+      ['A','老师，谢谢您！','Lǎoshī, xièxie nín!','Thưa thầy, em cảm ơn thầy ạ!'],
+      ['B','不客气。','Bú kèqi.','Không có gì.'],
+      ['A','老师再见！','Lǎoshī zàijiàn!','Em chào thầy ạ (tạm biệt thầy)!'],
+      ['B','再见！','Zàijiàn!','Tạm biệt em!']
+    ]},
+    {t:'Xin lỗi vì đến muộn', lines:[
+      ['A','对不起，我来晚了。','Duì bù qǐ, wǒ lái wǎn le.','Xin lỗi, tôi đến muộn.'],
+      ['B','没关系，请坐。','Méi guānxi, qǐng zuò.','Không sao, mời ngồi.'],
+      ['A','谢谢。','Xièxie.','Cảm ơn.']
+    ]}
+  ],
+  quiz:[
+    {q:'Ai đó nói “谢谢你！”, bạn đáp lại thế nào?', opts:['没关系','不客气','对不起','再见'], a:1, ex:'Đáp lời cảm ơn bằng 不客气 (không có gì). 没关系 dùng để đáp lời xin lỗi.'},
+    {q:'“对不起” viết pinyin đúng là…', opts:['duìbuqǐ','duì bù qǐ','duībùqǐ','duì bú qǐ'], a:1, ex:'Mỗi âm tiết cách nhau một khoảng: duì bù qǐ. 不 ở đây đứng trước qǐ (thanh 3) nên không biến điệu.'},
+    {order:['请','坐'], vi:'Mời ngồi.', ex:'请 + động từ = lời mời lịch sự: 请坐.'},
+    {order:['我','很好','你','呢'], vi:'Tôi rất khỏe, còn bạn?', ex:'呢 ở cuối để hỏi ngược lại: 你呢？'}
+  ]
+},
+/* ---------- BUỔI 6 · BÀI 3 ---------- */
+{ n:6, kind:'std', bai:3, title:'Hỏi tên & quốc tịch', hanzi:'你叫什么名字', sub:'Bài 3 · Bạn là người nước nào?',
+  intro:'Mở rộng hội thoại làm quen: hỏi quốc tịch, giới thiệu bạn bè và nói về việc học tiếng Trung.',
+  vocab:[
+    ['哪','nǎ','nào','na'],['国','guó','nước, quốc gia','quốc'],['哪国人','nǎ guó rén','người nước nào',''],
+    ['人','rén','người','nhân'],['谁','shéi','ai','thùy'],['学习','xuéxí','học tập','học tập'],
+    ['汉语','Hànyǔ','tiếng Trung (Hán ngữ)','Hán ngữ'],['朋友','péngyou','bạn bè','bằng hữu'],
+    ['北京','Běijīng','Bắc Kinh','Bắc Kinh'],['学校','xuéxiào','trường học','học hiệu'],
+    ['这','zhè','này, đây','giá'],['那','nà','kia, đó','na'],['中国人','Zhōngguó rén','người Trung Quốc',''],
+    ['美国人','Měiguó rén','người Mỹ','']
+  ],
+  grammar:[
+    {t:'Hỏi quốc tịch', f:'你是哪国人？— 我是 + nước + 人。', d:'Quốc tịch = tên nước + 人. Từ để hỏi 哪 (nào) kết hợp với danh từ: 哪国人 = người nước nào. Đừng quên trợ từ nghi vấn không cần thiết ở đây vì đã có từ để hỏi 哪.', ex:[['你是哪国人？','Nǐ shì nǎ guó rén?','Bạn là người nước nào?'],['我是越南人。','Wǒ shì Yuènán rén.','Tôi là người Việt Nam.']]},
+    {t:'Giới thiệu người khác bằng 这是', f:'这是 + người / quan hệ', d:'这是 (đây là) dùng để giới thiệu một người đang có mặt. 这 là “này/đây”, đối lập với 那 (kia/đó).', ex:[['这是我的朋友。','Zhè shì wǒ de péngyou.','Đây là bạn của tôi.'],['那是我的老师。','Nà shì wǒ de lǎoshī.','Kia là thầy của tôi.']]}
+  ],
+  dlg:[
+    {t:'Bạn là người nước nào?', lines:[
+      ['A','你好！你是哪国人？','Nǐ hǎo! Nǐ shì nǎ guó rén?','Chào bạn! Bạn là người nước nào?'],
+      ['B','我是美国人。你呢？','Wǒ shì Měiguó rén. Nǐ ne?','Tôi là người Mỹ. Còn bạn?'],
+      ['A','我是越南人。','Wǒ shì Yuènán rén.','Tôi là người Việt Nam.'],
+      ['B','你在北京学习汉语吗？','Nǐ zài Běijīng xuéxí Hànyǔ ma?','Bạn học tiếng Trung ở Bắc Kinh à?'],
+      ['A','是，我在北京学习汉语。','Shì, wǒ zài Běijīng xuéxí Hànyǔ.','Đúng, tôi học tiếng Trung ở Bắc Kinh.']
+    ]},
+    {t:'Giới thiệu bạn', lines:[
+      ['A','这是谁？','Zhè shì shéi?','Đây là ai?'],
+      ['B','这是我的朋友，大卫。','Zhè shì wǒ de péngyou, Dàwèi.','Đây là bạn tôi, Đại Vệ.'],
+      ['A','你好，大卫！','Nǐ hǎo, Dàwèi!','Chào Đại Vệ!']
+    ]}
+  ],
+  quiz:[
+    {q:'“Bạn là người nước nào?” nói thế nào?', opts:['你是哪国人？','你是谁？','你叫什么？','你好吗？'], a:0, ex:'Mẫu câu: 你是哪国人？— 我是…人。'},
+    {q:'Từ “谁” dùng để hỏi về…', opts:['Cái gì','Ở đâu','Ai','Nước nào'], a:2, ex:'谁 shéi = ai. 什么 = cái gì, 哪 = nào.'},
+    {order:['我','是','越南','人'], vi:'Tôi là người Việt Nam.', ex:'Quốc tịch = tên nước + 人： 越南人.'},
+    {order:['这','是','我','的','朋友'], vi:'Đây là bạn của tôi.', ex:'这是 + 的 sở hữu: 这是我的朋友。'}
+  ]
+}
+];
+
+</script>
+<script>
+/* ================= DỮ LIỆU (tiếp) — BUỔI 7–12 ================= */
+LESSONS.push(
+/* ---------- BUỔI 7 · BÀI 4 ---------- */
+{ n:7, kind:'std', bai:4, title:'Giới thiệu người khác', hanzi:'她是我的汉语老师', sub:'Bài 4 · Gia đình & quan hệ',
+  intro:'Dùng trợ từ 的 để nói quan hệ sở hữu và giới thiệu các thành viên trong gia đình qua một bức ảnh.',
+  vocab:[
+    ['她','tā','cô ấy, chị ấy','tha'],['他','tā','anh ấy, ông ấy','tha'],['的','de','của (trợ từ sở hữu)','đích'],
+    ['妈妈','māma','mẹ','ma'],['爸爸','bàba','bố','ba'],['儿子','érzi','con trai','nhi tử'],
+    ['女儿','nǚ\'ér','con gái','nữ nhi'],['照片','zhàopiàn','bức ảnh','chiếu phiến'],
+    ['漂亮','piàoliang','xinh đẹp','phiêu lượng'],['这','zhè','này, đây','giá'],['那','nà','kia, đó','na'],
+    ['谁','shéi','ai','thùy']
+  ],
+  grammar:[
+    {t:'Trợ từ sở hữu 的', f:'Người sở hữu + 的 + danh từ', d:'的 nối người sở hữu với vật/người thuộc về họ, tương đương “của”. Với quan hệ gia đình thân thuộc, có thể lược bỏ 的: 我妈妈 (mẹ tôi). 的 luôn đọc thanh nhẹ “de”.', ex:[['我的老师','wǒ de lǎoshī','thầy của tôi'],['她的女儿','tā de nǚ\'ér','con gái của cô ấy'],['我爸爸是医生。','Wǒ bàba shì yīshēng.','Bố tôi là bác sĩ.']]},
+    {t:'Hỏi người bằng 谁', f:'这是谁？· 他是谁？', d:'谁 (ai) đặt ở vị trí của người cần hỏi. Kết hợp với 这/那 để hỏi về người trong ảnh hoặc người đang có mặt.', ex:[['这是谁？','Zhè shì shéi?','Đây là ai?'],['她是谁？','Tā shì shéi?','Cô ấy là ai?']]}
+  ],
+  dlg:[
+    {t:'Xem ảnh gia đình', lines:[
+      ['A','这张照片很漂亮！这是谁？','Zhè zhāng zhàopiàn hěn piàoliang! Zhè shì shéi?','Bức ảnh này đẹp quá! Đây là ai?'],
+      ['B','这是我妈妈，那是我爸爸。','Zhè shì wǒ māma, nà shì wǒ bàba.','Đây là mẹ tôi, kia là bố tôi.'],
+      ['A','她是你姐姐吗？','Tā shì nǐ jiějie ma?','Cô ấy là chị gái bạn à?'],
+      ['B','不是，她是我妹妹。','Bú shì, tā shì wǒ mèimei.','Không, cô ấy là em gái tôi.']
+    ]},
+    {t:'Cô ấy là ai?', lines:[
+      ['A','她是谁？','Tā shì shéi?','Cô ấy là ai?'],
+      ['B','她是我的汉语老师。','Tā shì wǒ de Hànyǔ lǎoshī.','Cô ấy là giáo viên tiếng Trung của tôi.'],
+      ['A','她很漂亮！','Tā hěn piàoliang!','Cô ấy rất xinh!']
+    ]}
+  ],
+  quiz:[
+    {q:'“Con gái của cô ấy” nói thế nào?', opts:['她女儿的','她的女儿','女儿的她','她是女儿'], a:1, ex:'Sở hữu: người sở hữu + 的 + danh từ → 她的女儿.'},
+    {q:'Trong câu “我爸爸是老师”, vì sao không cần 的 sau 我？', opts:['Vì câu sai ngữ pháp','Vì quan hệ gia đình thân thuộc có thể lược bỏ 的','Vì 爸爸 không phải danh từ','Vì 是 đã thay thế 的'], a:1, ex:'Với người thân trong gia đình, 的 thường được lược bỏ: 我爸爸, 你妈妈.'},
+    {order:['这','是','我','的','汉语','老师'], vi:'Đây là giáo viên tiếng Trung của tôi.', ex:'这是 + 我的 + 汉语老师.'},
+    {order:['她','是','谁'], vi:'Cô ấy là ai?', ex:'Hỏi người: chủ ngữ + 是 + 谁？'}
+  ]
+},
+/* ---------- BUỔI 8 · BÀI 5 ---------- */
+{ n:8, kind:'std', bai:5, title:'Hỏi tuổi & gia đình', hanzi:'她女儿今年二十岁', sub:'Bài 5 · Số đếm, tuổi tác',
+  intro:'Đếm số thành thạo đến 100, hỏi tuổi lịch sự và nói gia đình có mấy người với lượng từ 口.',
+  vocab:[
+    ['岁','suì','tuổi','tuế'],['今年','jīnnián','năm nay','kim niên'],['多大','duō dà','bao nhiêu tuổi','đa đại'],
+    ['十','shí','mười','thập'],['二十','èrshí','hai mươi','nhị thập'],['家','jiā','nhà, gia đình','gia'],
+    ['口','kǒu','nhân khẩu (lượng từ đếm người trong nhà)','khẩu'],['几','jǐ','mấy','kỷ'],
+    ['哥哥','gēge','anh trai','ca'],['姐姐','jiějie','chị gái','tỷ'],['妹妹','mèimei','em gái','muội'],
+    ['弟弟','dìdi','em trai','đệ'],['和','hé','và','hòa'],['有','yǒu','có','hữu']
+  ],
+  grammar:[
+    {t:'Nói tuổi', f:'今年 + số + 岁 · 你今年多大？', d:'Hỏi tuổi trẻ em/người trẻ dùng 你今年多大？(năm nay bạn bao nhiêu tuổi?). Trả lời: 我今年 + số + 岁. Số từ 11–99 ghép: 十一 shíyī (11), 二十五 èrshíwǔ (25), 九十九 jiǔshíjiǔ (99).', ex:[['你女儿今年多大？','Nǐ nǚ\'ér jīnnián duō dà?','Con gái bạn năm nay bao nhiêu tuổi?'],['她今年二十岁。','Tā jīnnián èrshí suì.','Năm nay cô ấy 20 tuổi.']]},
+    {t:'Lượng từ 口 đếm người trong gia đình', f:'一家 + số + 口 + 人', d:'Khi đếm số người trong một gia đình, dùng lượng từ 口: 你家有几口人？(Nhà bạn có mấy người?). Hỏi bằng 几 (mấy — dùng khi số lượng dự đoán dưới 10) + lượng từ.', ex:[['你家有几口人？','Nǐ jiā yǒu jǐ kǒu rén?','Gia đình bạn có mấy người?'],['我家有五口人。','Wǒ jiā yǒu wǔ kǒu rén.','Gia đình tôi có 5 người.']]}
+  ],
+  dlg:[
+    {t:'Con gái bạn mấy tuổi?', lines:[
+      ['A','你女儿今年多大？','Nǐ nǚ\'ér jīnnián duō dà?','Con gái bạn năm nay bao nhiêu tuổi?'],
+      ['B','她今年二十岁。','Tā jīnnián èrshí suì.','Năm nay cháu 20 tuổi.'],
+      ['A','你儿子呢？','Nǐ érzi ne?','Còn con trai bạn?'],
+      ['B','他今年十八岁。','Tā jīnnián shíbā suì.','Năm nay cháu 18 tuổi.']
+    ]},
+    {t:'Gia đình mấy người?', lines:[
+      ['A','你家有几口人？','Nǐ jiā yǒu jǐ kǒu rén?','Gia đình bạn có mấy người?'],
+      ['B','我家有四口人：爸爸、妈妈、姐姐和我。','Wǒ jiā yǒu sì kǒu rén: bàba, māma, jiějie hé wǒ.','Nhà tôi có 4 người: bố, mẹ, chị gái và tôi.']
+    ]}
+  ],
+  quiz:[
+    {q:'Số 47 trong tiếng Trung là…', opts:['四十七 sìshíqī','七十四 qīshísì','四七 sìqī','十四七 shísìqī'], a:0, ex:'Ghép số: hàng chục + hàng đơn vị: 47 = 四十七 sìshíqī.'},
+    {q:'Muốn hỏi “Gia đình bạn có mấy người?”, câu đúng là…', opts:['你家有几个人？','你家有几口人？','你家几岁？','你家有谁？'], a:1, ex:'Đếm người trong gia đình bắt buộc dùng lượng từ 口: 几口人.'},
+    {order:['她','今年','二十','岁'], vi:'Năm nay cô ấy 20 tuổi.', ex:'Trật tự: chủ ngữ + 今年 + số + 岁.'},
+    {order:['我','家','有','五','口','人'], vi:'Gia đình tôi có 5 người.', ex:'有 + số + 口 + 人.'}
+  ]
+},
+/* ---------- BUỔI 9 · BÀI 6 ---------- */
+{ n:9, kind:'std', bai:6, title:'Khả năng & kỹ năng', hanzi:'我会说汉语', sub:'Bài 6 · Động từ năng nguyện 会',
+  intro:'Nói về khả năng, kỹ năng đã học được với 会: biết nói tiếng Trung, biết nấu món Trung, biết viết chữ Hán.',
+  vocab:[
+    ['会','huì','biết (kỹ năng học được)','hội'],['说','shuō','nói','thuyết'],['做','zuò','làm, nấu','tác'],
+    ['菜','cài','món ăn, rau','thái'],['中国菜','Zhōngguó cài','món ăn Trung Quốc',''],
+    ['写','xiě','viết','tả'],['汉字','Hànzì','chữ Hán','Hán tự'],['读','dú','đọc','độc'],
+    ['怎么样','zěnmeyàng','thế nào',''],['唱歌','chàng gē','hát','xướng ca'],
+    ['跳舞','tiào wǔ','nhảy múa','khiêu vũ'],['很','hěn','rất','ngận']
+  ],
+  grammar:[
+    {t:'Động từ năng nguyện 会', f:'Chủ ngữ + 会 + động từ + tân ngữ', d:'会 diễn tả khả năng có được nhờ học tập, luyện tập (biết nói, biết viết, biết nấu). Phủ định: 不会. Câu hỏi chính phản: 会不会 + động từ?', ex:[['我会说汉语。','Wǒ huì shuō Hànyǔ.','Tôi biết nói tiếng Trung.'],['她不会做中国菜。','Tā bú huì zuò Zhōngguó cài.','Cô ấy không biết nấu món Trung.'],['你会不会写汉字？','Nǐ huì bú huì xiě Hànzì?','Bạn có biết viết chữ Hán không?']]},
+    {t:'Phó từ 很 trước tính từ', f:'Chủ ngữ + 很 + tính từ', d:'Trong câu vị ngữ tính từ, 很 thường đứng trước tính từ nhưng sắc thái “rất” rất yếu — nó chủ yếu đóng vai trò nối câu cho tự nhiên. So sánh: 我很好 (Tôi khỏe) không nhất thiết là “rất khỏe”.', ex:[['中国菜很好吃。','Zhōngguó cài hěn hǎochī.','Món Trung rất ngon.'],['她唱歌唱得很好。','Tā chàng gē chàng de hěn hǎo.','Cô ấy hát rất hay.']]}
+  ],
+  dlg:[
+    {t:'Bạn biết nói tiếng Trung không?', lines:[
+      ['A','你会说汉语吗？','Nǐ huì shuō Hànyǔ ma?','Bạn biết nói tiếng Trung không?'],
+      ['B','我会说汉语，我也会写汉字。','Wǒ huì shuō Hànyǔ, wǒ yě huì xiě Hànzì.','Tôi biết nói tiếng Trung, tôi cũng biết viết chữ Hán.'],
+      ['A','你汉语说得怎么样？','Nǐ Hànyǔ shuō de zěnmeyàng?','Bạn nói tiếng Trung thế nào?'],
+      ['B','我说得很好。','Wǒ shuō de hěn hǎo.','Tôi nói rất tốt.']
+    ]},
+    {t:'Nấu món Trung', lines:[
+      ['A','你会做中国菜吗？','Nǐ huì zuò Zhōngguó cài ma?','Bạn biết nấu món Trung không?'],
+      ['B','我会做，我做得很好吃。','Wǒ huì zuò, wǒ zuò de hěn hǎochī.','Tôi biết nấu, tôi nấu rất ngon.']
+    ]}
+  ],
+  quiz:[
+    {q:'会 dùng để diễn tả điều gì?', opts:['Sự cho phép','Khả năng nhờ học tập, luyện tập','Ý muốn','Sự bắt buộc'], a:1, ex:'会 = biết làm gì nhờ học/luyện (biết nói, biết viết). Xin phép dùng 能 (Bài 10).'},
+    {q:'Câu hỏi chính phản của 会 nói đúng là…', opts:['你会说汉语不会？','你会不会说汉语？','你不会会说汉语？','你会说汉语吗不会？'], a:1, ex:'Chính phản: 会不会 + động từ: 你会不会说汉语？'},
+    {order:['我','会','说','汉语'], vi:'Tôi biết nói tiếng Trung.', ex:'会 + động từ + tân ngữ.'},
+    {order:['她','不','会','做','中国菜'], vi:'Cô ấy không biết nấu món Trung Quốc.', ex:'Phủ định: 不会 + động từ. (不 trước 会 huì thanh 4 → bú huì khi đọc.)'}
+  ]
+},
+/* ---------- BUỔI 10 · BÀI 7 ---------- */
+{ n:10, kind:'std', bai:7, title:'Ngày tháng & thứ', hanzi:'今天几号', sub:'Bài 7 · Hôm nay ngày mấy?',
+  intro:'Nói ngày, tháng, thứ trong tuần theo đúng trật tự từ lớn đến nhỏ của tiếng Trung: năm – tháng – ngày – thứ.',
+  vocab:[
+    ['今天','jīntiān','hôm nay','kim thiên'],['号','hào','ngày (dùng khi nói)','hiệu'],
+    ['月','yuè','tháng','nguyệt'],['星期','xīngqī','tuần, thứ','tinh kỳ'],
+    ['星期一','xīngqīyī','thứ Hai',''],['昨天','zuótiān','hôm qua','tạc thiên'],
+    ['明天','míngtiān','ngày mai','minh thiên'],['去','qù','đi','khứ'],
+    ['看','kàn','xem, nhìn, đọc','khán'],['书','shū','sách','thư'],
+    ['年','nián','năm','niên'],['生日','shēngrì','sinh nhật','sinh nhật']
+  ],
+  grammar:[
+    {t:'Cách nói ngày tháng', f:'…月…号，星期… · 今天几月几号？', d:'Trật tự ngày tháng đi từ lớn đến nhỏ: tháng trước, ngày sau, thứ cuối cùng. 号 dùng trong khẩu ngữ, 日 dùng trong văn viết. Tháng: 一月 (tháng 1)… 十二月 (tháng 12). Thứ: 星期一 (thứ Hai) đến 星期六， riêng Chủ nhật là 星期日/星期天.', ex:[['今天是九月三号，星期三。','Jīntiān shì jiǔ yuè sān hào, xīngqīsān.','Hôm nay là ngày 3 tháng 9, thứ Tư.'],['明天是星期几？','Míngtiān shì xīngqī jǐ?','Ngày mai là thứ mấy?']]},
+    {t:'Trật tự thời gian trong câu', f:'Chủ ngữ + thời gian + động từ + tân ngữ', d:'Từ chỉ thời gian （今天， 明天， 昨天…) luôn đứng trước động từ, sau chủ ngữ — khác với tiếng Việt thường đặt cuối câu.', ex:[['我明天去学校看书。','Wǒ míngtiān qù xuéxiào kàn shū.','Ngày mai tôi đến trường đọc sách.'],['他昨天去北京了。','Tā zuótiān qù Běijīng le.','Hôm qua anh ấy đã đi Bắc Kinh.']]}
+  ],
+  dlg:[
+    {t:'Hôm nay ngày mấy?', lines:[
+      ['A','今天几月几号？','Jīntiān jǐ yuè jǐ hào?','Hôm nay là ngày mấy tháng mấy?'],
+      ['B','今天是十月十八号，星期三。','Jīntiān shì shí yuè shíbā hào, xīngqīsān.','Hôm nay là ngày 18 tháng 10, thứ Tư.'],
+      ['A','明天是星期几？','Míngtiān shì xīngqī jǐ?','Ngày mai là thứ mấy?'],
+      ['B','明天是星期四。','Míngtiān shì xīngqīsì.','Ngày mai là thứ Năm.']
+    ]},
+    {t:'Mai bạn đi đâu?', lines:[
+      ['A','你明天去哪儿？','Nǐ míngtiān qù nǎr?','Ngày mai bạn đi đâu?'],
+      ['B','我明天去学校看书。','Wǒ míngtiān qù xuéxiào kàn shū.','Ngày mai tôi đến trường đọc sách.']
+    ]}
+  ],
+  quiz:[
+    {q:'“Thứ Tư” trong tiếng Trung là…', opts:['星期三','星期四','星期二','星期天'], a:0, ex:'星期三 = thứ Tư (đếm từ thứ Hai = 星期一）. 星期四 mới là thứ Năm.'},
+    {q:'Trật tự ngày tháng đúng trong tiếng Trung là…', opts:['Ngày – tháng – thứ','Tháng – ngày – thứ','Thứ – ngày – tháng','Ngày – thứ – tháng'], a:1, ex:'Từ lớn đến nhỏ: tháng → ngày → thứ. Ví dụ: 十月十八号，星期三.'},
+    {order:['今天','是','星期','几'], vi:'Hôm nay là thứ mấy?', ex:'今天 + 是 + 星期 + 几？'},
+    {order:['我','明天','去','学校','看书'], vi:'Ngày mai tôi đến trường đọc sách.', ex:'Thời gian đứng trước động từ: 我明天去学校看书。'}
+  ]
+},
+/* ---------- BUỔI 11 · BÀI 8 ---------- */
+{ n:11, kind:'std', bai:8, title:'Muốn & mua sắm', hanzi:'我想喝茶', sub:'Bài 8 · Ăn uống, hỏi giá',
+  intro:'Nói mong muốn với 想， gọi đồ ăn thức uống và hỏi giá tiền bằng lượng từ quen thuộc 个， 杯.',
+  vocab:[
+    ['想','xiǎng','muốn','tưởng'],['喝','hē','uống','hát'],['茶','chá','trà','trà'],
+    ['水','shuǐ','nước','thủy'],['米饭','mǐfàn','cơm','mễ phạn'],['吃','chī','ăn','khật'],
+    ['买','mǎi','mua','mãi'],['东西','dōngxi','đồ vật, đồ đạc','đông tây'],
+    ['多少钱','duōshao qián','bao nhiêu tiền',''],['块','kuài','đồng (đơn vị tiền)','khối'],
+    ['个','gè','cái, chiếc (lượng từ phổ thông)','cá'],['杯子','bēizi','cái cốc, ly','bôi tử'],
+    ['苹果','píngguǒ','quả táo','bình quả'],['一杯','yì bēi','một cốc','nhất bôi']
+  ],
+  grammar:[
+    {t:'Động từ năng nguyện 想', f:'Chủ ngữ + 想 + động từ + tân ngữ', d:'想 diễn tả mong muốn làm việc gì: 我想喝茶 (Tôi muốn uống trà). 想 cũng có nghĩa “nhớ” và “nghĩ” tùy ngữ cảnh, sẽ gặp ở các cấp sau.', ex:[['我想吃米饭。','Wǒ xiǎng chī mǐfàn.','Tôi muốn ăn cơm.'],['她想买一个杯子。','Tā xiǎng mǎi yí gè bēizi.','Cô ấy muốn mua một cái cốc.']]},
+    {t:'Hỏi giá tiền', f:'…多少钱？· Số + 块 (tiền)', d:'Hỏi giá: 这个多少钱？(Cái này bao nhiêu tiền?). Đơn vị tiền nói: 块 kuài (đồng), viết là 元. Giá ghép như số đếm: 十五块 (15 đồng). Lượng từ 个 đi với hầu hết đồ vật; 杯 là lượng từ cho đồ uống đựng trong cốc.', ex:[['这个杯子多少钱？','Zhège bēizi duōshao qián?','Cái cốc này bao nhiêu tiền?'],['八块。','Bā kuài.','8 đồng.'],['我想喝一杯茶。','Wǒ xiǎng hē yì bēi chá.','Tôi muốn uống một cốc trà.']]}
+  ],
+  dlg:[
+    {t:'Ở quán trà', lines:[
+      ['A','你想喝什么？','Nǐ xiǎng hē shénme?','Bạn muốn uống gì?'],
+      ['B','我想喝一杯茶。你呢？','Wǒ xiǎng hē yì bēi chá. Nǐ ne?','Tôi muốn uống một cốc trà. Còn bạn?'],
+      ['A','我想喝水。','Wǒ xiǎng hē shuǐ.','Tôi muốn uống nước.']
+    ]},
+    {t:'Mua táo', lines:[
+      ['A','苹果多少钱一个？','Píngguǒ duōshao qián yí gè?','Táo bao nhiêu tiền một quả?'],
+      ['B','五块一个。','Wǔ kuài yí gè.','5 đồng một quả.'],
+      ['A','我想买三个。','Wǒ xiǎng mǎi sān gè.','Tôi muốn mua ba quả.']
+    ]}
+  ],
+  quiz:[
+    {q:'“Tôi muốn uống trà” nói thế nào?', opts:['我想喝茶。','我会喝茶。','我能喝茶。','我喝茶想。'], a:0, ex:'想 + động từ: 我想喝茶. 会 = biết (kỹ năng), 能 = có thể/được phép.'},
+    {q:'“Cái cốc này bao nhiêu tiền?” — từ nào hỏi giá?', opts:['几号','多少钱','多大','怎么样'], a:1, ex:'Hỏi giá dùng 多少钱. 几号 hỏi ngày, 多大 hỏi tuổi/kích thước.'},
+    {order:['我','想','买','一','个','杯子'], vi:'Tôi muốn mua một cái cốc.', ex:'想 + 买 + số + 个 + danh từ.'},
+    {order:['这','个','多少','钱'], vi:'Cái này bao nhiêu tiền?', ex:'这个 + 多少钱？'}
+  ]
+},
+/* ---------- BUỔI 12 · BÀI 9 ---------- */
+{ n:12, kind:'std', bai:9, title:'Nơi làm việc & vị trí', hanzi:'你儿子在哪儿工作', sub:'Bài 9 · 在 + địa điểm, phương vị từ',
+  intro:'Hỏi nơi làm việc, nơi ở bằng 在…哪儿 và mô tả vị trí trên/dưới/trong/ngoài bằng phương vị từ.',
+  vocab:[
+    ['在','zài','ở, tại','tại'],['哪儿','nǎr','ở đâu',''],['工作','gōngzuò','làm việc; công việc','công tác'],
+    ['医院','yīyuàn','bệnh viện','y viện'],['医生','yīshēng','bác sĩ','y sinh'],
+    ['饭店','fàndiàn','nhà hàng, khách sạn','phạn điếm'],['商店','shāngdiàn','cửa hàng','thương điếm'],
+    ['里面','lǐmiàn','bên trong','lý diện'],['上面','shàngmiàn','phía trên','thượng diện'],
+    ['小狗','xiǎogǒu','chó con','tiểu cẩu'],['猫','māo','con mèo','miêu'],
+    ['学校','xuéxiào','trường học','học hiệu'],['家','jiā','nhà','gia']
+  ],
+  grammar:[
+    {t:'在 + địa điểm + động từ', f:'Chủ ngữ + 在 + địa điểm + động từ', d:'Muốn nói “làm việc gì ở đâu”, đặt 在 + địa điểm trước động từ. Hỏi địa điểm bằng 哪儿: 你在哪儿工作？(Bạn làm việc ở đâu?).', ex:[['我儿子在医院工作。','Wǒ érzi zài yīyuàn gōngzuò.','Con trai tôi làm việc ở bệnh viện.'],['她在学校学习汉语。','Tā zài xuéxiào xuéxí Hànyǔ.','Cô ấy học tiếng Trung ở trường.']]},
+    {t:'Phương vị từ: 上 / 里 / 前 / 后 + 面', f:'Danh từ + 上面/里面/前面/后面', d:'Vị trí = danh từ chỉ vật chuẩn + phương vị từ: 桌子上面 (trên bàn), 商店里面 (trong cửa hàng), 学校前面 (trước trường), 饭店后面 (sau nhà hàng).', ex:[['小狗在桌子下面。','Xiǎogǒu zài zhuōzi xiàmiàn.','Chó con ở dưới bàn.'],['猫在商店里面。','Māo zài shāngdiàn lǐmiàn.','Con mèo ở trong cửa hàng.']]}
+  ],
+  dlg:[
+    {t:'Con trai bạn làm ở đâu?', lines:[
+      ['A','你儿子在哪儿工作？','Nǐ érzi zài nǎr gōngzuò?','Con trai bạn làm việc ở đâu?'],
+      ['B','他在医院工作，他是医生。','Tā zài yīyuàn gōngzuò, tā shì yīshēng.','Anh ấy làm ở bệnh viện, anh ấy là bác sĩ.'],
+      ['A','你女儿呢？','Nǐ nǚ\'ér ne?','Còn con gái bạn?'],
+      ['B','她在饭店工作。','Tā zài fàndiàn gōngzuò.','Cô ấy làm ở nhà hàng.']
+    ]},
+    {t:'Chó con ở đâu?', lines:[
+      ['A','小狗在哪儿？','Xiǎogǒu zài nǎr?','Chó con ở đâu?'],
+      ['B','小狗在桌子下面。','Xiǎogǒu zài zhuōzi xiàmiàn.','Chó con ở dưới cái bàn.']
+    ]}
+  ],
+  quiz:[
+    {q:'“Cô ấy học tiếng Trung ở trường” — trật tự đúng là…', opts:['她学习汉语在学校。','她在学校学习汉语。','在学校她汉语学习。','她学校在学习汉语。'], a:1, ex:'在 + địa điểm đứng trước động từ: 她在学校学习汉语.'},
+    {q:'“Trên bàn” nói thế nào?', opts:['桌子上面','上面桌子','桌子里面','在桌子'], a:0, ex:'Vật chuẩn + phương vị: 桌子 + 上面.'},
+    {order:['你','儿子','在','哪儿','工作'], vi:'Con trai bạn làm việc ở đâu?', ex:'在 + 哪儿 + động từ: 在哪儿工作？'},
+    {order:['猫','在','商店','里面'], vi:'Con mèo ở trong cửa hàng.', ex:'Chủ ngữ + 在 + nơi + phương vị.'}
+  ]
+}
+);
+</script>
+<script>
+/* ================= DỮ LIỆU (tiếp) — BUỔI 13–18 ================= */
+LESSONS.push(
+/* ---------- BUỔI 13 · BÀI 10 ---------- */
+{ n:13, kind:'std', bai:10, title:'Xin phép & sự tồn tại', hanzi:'我能坐这儿吗', sub:'Bài 10 · 能 xin phép, 有 tồn tại',
+  intro:'Xin phép lịch sự bằng 能 và nói “ở đâu có cái gì” bằng cấu trúc tồn tại với 有.',
+  vocab:[
+    ['能','néng','có thể, được phép','năng'],['坐','zuò','ngồi; đi (xe)','tọa'],
+    ['这儿','zhèr','ở đây',''],['那儿','nàr','ở kia',''],['有','yǒu','có','hữu'],
+    ['没有','méiyǒu','không có',''],['桌子','zhuōzi','cái bàn','trác tử'],
+    ['椅子','yǐzi','cái ghế','ỷ tử'],['前面','qiánmiàn','phía trước','tiền diện'],
+    ['后面','hòumiàn','phía sau','hậu diện'],['书','shū','sách','thư'],['人','rén','người','nhân']
+  ],
+  grammar:[
+    {t:'能 — xin phép và khả năng khách quan', f:'Chủ ngữ + 能 + động từ + 吗？', d:'能 diễn tả được phép làm gì hoặc điều kiện khách quan cho phép. Hỏi xin phép: 我能坐这儿吗？(Tôi ngồi đây được không?). Phân biệt: 会 = biết nhờ học; 能 = được phép/có thể.', ex:[['我能坐这儿吗？','Wǒ néng zuò zhèr ma?','Tôi ngồi ở đây được không?'],['今天我不能去学校。','Jīntiān wǒ bù néng qù xuéxiào.','Hôm nay tôi không thể đến trường.']]},
+    {t:'Câu tồn tại với 有', f:'Nơi chốn + 有 + (số + lượng từ) + sự vật', d:'Muốn nói “ở đâu có cái gì”, dùng: địa điểm + 有 + sự vật. Phủ định của 有 là 没有 (không dùng 不有）.', ex:[['桌子上有一本书。','Zhuōzi shàng yǒu yì běn shū.','Trên bàn có một quyển sách.'],['前面没有人。','Qiánmiàn méiyǒu rén.','Phía trước không có người.']]}
+  ],
+  dlg:[
+    {t:'Tôi ngồi đây được không?', lines:[
+      ['A','请问，我能坐这儿吗？','Qǐng wèn, wǒ néng zuò zhèr ma?','Xin hỏi, tôi ngồi đây được không?'],
+      ['B','能，请坐。','Néng, qǐng zuò.','Được, mời ngồi.'],
+      ['A','谢谢！','Xièxie!','Cảm ơn!']
+    ]},
+    {t:'Trên bàn có gì?', lines:[
+      ['A','桌子上有什么？','Zhuōzi shàng yǒu shénme?','Trên bàn có gì?'],
+      ['B','桌子上有一本书和一个杯子。','Zhuōzi shàng yǒu yì běn shū hé yí gè bēizi.','Trên bàn có một quyển sách và một cái cốc.']
+    ]}
+  ],
+  quiz:[
+    {q:'Muốn xin phép ngồi xuống, câu lịch sự đúng là…', opts:['我会坐这儿吗？','我能坐这儿吗？','我想坐这儿吗？','我坐这儿是吗？'], a:1, ex:'Xin phép dùng 能: 我能坐这儿吗？会 chỉ kỹ năng đã học được.'},
+    {q:'Phủ định của 有 là…', opts:['不有','没有','不是','不会'], a:1, ex:'Có → 没有. Đây là trường hợp đặc biệt: 有 chỉ đi với 没.'},
+    {order:['我','能','坐','这儿','吗'], vi:'Tôi ngồi đây được không?', ex:'能 + động từ + 吗 để xin phép.'},
+    {order:['桌子','上','有','一','本','书'], vi:'Trên bàn có một quyển sách.', ex:'Câu tồn tại: nơi chốn + 有 + số lượng + sự vật.'}
+  ]
+},
+/* ---------- BUỔI 14 · BÀI 11 ---------- */
+{ n:14, kind:'std', bai:11, title:'Giờ giấc & lịch trình', hanzi:'现在几点', sub:'Bài 11 · Mấy giờ rồi?',
+  intro:'Đọc giờ chính xác đến từng phút, phân biệt các buổi trong ngày và kể lịch trình sinh hoạt hằng ngày.',
+  vocab:[
+    ['现在','xiànzài','bây giờ','hiện tại'],['点','diǎn','giờ (điểm giờ)','điểm'],
+    ['分','fēn','phút','phân'],['中午','zhōngwǔ','buổi trưa','trung ngọ'],
+    ['上午','shàngwǔ','buổi sáng','thượng ngọ'],['下午','xiàwǔ','buổi chiều','hạ ngọ'],
+    ['晚上','wǎnshang','buổi tối','vãn thượng'],['回家','huí jiā','về nhà','hồi gia'],
+    ['睡觉','shuì jiào','đi ngủ','thụy giác'],['起床','qǐ chuáng','thức dậy','khởi sàng'],
+    ['电影','diànyǐng','phim, điện ảnh','điện ảnh'],['时候','shíhou','lúc, khi','thời hậu'],
+    ['每天','měitiān','mỗi ngày','mỗi thiên']
+  ],
+  grammar:[
+    {t:'Cách nói giờ', f:'Số + 点 + số + 分 · 现在几点？', d:'Giờ trước, phút sau: 八点十分 (8 giờ 10 phút). Phút bằng 0 thì bỏ qua: 七点 (7 giờ đúng). Nửa giờ nói 点半: 七点半 (7 giờ rưỡi). Các buổi trong ngày đặt trước giờ: 上午九点 (9 giờ sáng), 晚上七点 (7 giờ tối).', ex:[['现在十点十分。','Xiànzài shí diǎn shí fēn.','Bây giờ là 10 giờ 10 phút.'],['晚上七点半','wǎnshang qī diǎn bàn','7 giờ rưỡi tối']]},
+    {t:'Thời gian làm trạng ngữ đứng trước động từ', f:'Chủ ngữ + (buổi) + giờ + động từ', d:'Cụm chỉ thời gian luôn đứng trước động từ chính: 我每天晚上十一点睡觉 (Tôi mỗi ngày 11 giờ tối đi ngủ). Đây là trật tự bắt buộc, khác hẳn tiếng Việt.', ex:[['我上午八点去学校。','Wǒ shàngwǔ bā diǎn qù xuéxiào.','Tôi đến trường lúc 8 giờ sáng.'],['他中午十二点回家。','Tā zhōngwǔ shí\'èr diǎn huí jiā.','Anh ấy về nhà lúc 12 giờ trưa.']]}
+  ],
+  dlg:[
+    {t:'Mấy giờ rồi?', lines:[
+      ['A','现在几点？','Xiànzài jǐ diǎn?','Bây giờ là mấy giờ?'],
+      ['B','现在四点十分。','Xiànzài sì diǎn shí fēn.','Bây giờ là 4 giờ 10 phút.'],
+      ['A','你几点回家？','Nǐ jǐ diǎn huí jiā?','Mấy giờ bạn về nhà?'],
+      ['B','我五点半回家。','Wǒ wǔ diǎn bàn huí jiā.','Tôi về nhà lúc 5 giờ rưỡi.']
+    ]},
+    {t:'Lịch trình một ngày', lines:[
+      ['A','你每天几点起床？','Nǐ měitiān jǐ diǎn qǐ chuáng?','Mỗi ngày bạn thức dậy lúc mấy giờ?'],
+      ['B','我早上六点起床，晚上十一点睡觉。','Wǒ zǎoshang liù diǎn qǐ chuáng, wǎnshang shíyī diǎn shuì jiào.','Tôi dậy lúc 6 giờ sáng, đi ngủ lúc 11 giờ tối.']
+    ]}
+  ],
+  quiz:[
+    {q:'“7 giờ rưỡi tối” nói thế nào?', opts:['晚上七点三十分','晚上七点半','七点晚上半','半晚上七点'], a:1, ex:'Buổi + giờ + 半: 晚上七点半.'},
+    {q:'现在三点 (bây giờ 3 giờ). Nếu là 3 giờ 5 phút thì nói…', opts:['三点五分','三点分五','五分三点','三点五十'], a:0, ex:'Giờ + 点 + phút + 分: 三点五分. (Số phút dưới 10 vẫn đọc đủ: 五分.)'},
+    {order:['现在','几','点'], vi:'Bây giờ là mấy giờ?', ex:'现在 + 几 + 点？'},
+    {order:['我','每天','晚上','十一点','睡觉'], vi:'Tôi mỗi ngày đi ngủ lúc 11 giờ tối.', ex:'Cụm thời gian đứng trước động từ 睡觉.'}
+  ]
+},
+/* ---------- BUỔI 15 · BÀI 12 ---------- */
+{ n:15, kind:'std', bai:12, title:'Thời tiết & sức khỏe', hanzi:'明天天气怎么样', sub:'Bài 12 · Trời lạnh hay nóng?',
+  intro:'Hỏi và mô tả thời tiết, nói về sức khỏe và cảm xúc với cấu trúc 太…了 và động từ cảm nhận 觉得.',
+  vocab:[
+    ['天气','tiānqì','thời tiết','thiên khí'],['冷','lěng','lạnh','lãnh'],
+    ['热','rè','nóng','nhiệt'],['下雨','xià yǔ','mưa (trời mưa)','hạ vũ'],
+    ['身体','shēntǐ','cơ thể, sức khỏe','thân thể'],['舒服','shūfu','dễ chịu, khỏe','thư phục'],
+    ['太','tài','quá','thái'],['高兴','gāoxìng','vui vẻ','cao hứng'],
+    ['觉得','juéde','cảm thấy, cho rằng','giác đắc'],['怎么样','zěnmeyàng','thế nào',''],
+    ['明天','míngtiān','ngày mai','minh thiên'],['晴天','qíngtiān','ngày nắng','tình thiên']
+  ],
+  grammar:[
+    {t:'Câu vị ngữ tính từ tả thời tiết', f:'(Thời gian) + 天气 + tính từ · 天气怎么样？', d:'Câu tả thời tiết không cần động từ 是: 明天天气怎么样？(Ngày mai thời tiết thế nào?) — 今天很冷 (Hôm nay rất lạnh). Đặt 是 vào là sai: không nói “天气是冷”.', ex:[['今天天气怎么样？','Jīntiān tiānqì zěnmeyàng?','Hôm nay thời tiết thế nào?'],['今天很冷，明天很热。','Jīntiān hěn lěng, míngtiān hěn rè.','Hôm nay rất lạnh, ngày mai rất nóng.']]},
+    {t:'Cấu trúc nhấn mạnh 太…了', f:'太 + tính từ + 了', d:'太…了 diễn tả mức độ cao kèm cảm xúc của người nói (quá…rồi): 太冷了 (Lạnh quá!), 太好了 (Tốt quá!). Phủ định: 不太 + tính từ (không…lắm).', ex:[['今天太热了！','Jīntiān tài rè le!','Hôm nay nóng quá!'],['我今天不太舒服。','Wǒ jīntiān bú tài shūfu.','Hôm nay tôi không được khỏe lắm.']]}
+  ],
+  dlg:[
+    {t:'Ngày mai thời tiết thế nào?', lines:[
+      ['A','明天天气怎么样？','Míngtiān tiānqì zěnmeyàng?','Ngày mai thời tiết thế nào?'],
+      ['B','明天是晴天，不冷也不热。','Míngtiān shì qíngtiān, bù lěng yě bù rè.','Ngày mai trời nắng, không lạnh cũng không nóng.'],
+      ['A','太好了！','Tài hǎo le!','Tốt quá!']
+    ]},
+    {t:'Bạn không khỏe à?', lines:[
+      ['A','你怎么了？','Nǐ zěnme le?','Bạn sao vậy?'],
+      ['B','我有点儿不舒服。','Wǒ yǒudiǎnr bù shūfu.','Tôi hơi không khỏe.'],
+      ['A','你回家休息吧。','Nǐ huí jiā xiūxi ba.','Bạn về nhà nghỉ ngơi đi.']
+    ]}
+  ],
+  quiz:[
+    {q:'Câu nào đúng ngữ pháp?', opts:['今天天气是冷。','今天很冷。','今天冷是。','今天是冷天气。'], a:1, ex:'Câu vị ngữ tính từ không dùng 是: 今天很冷.'},
+    {q:'“Nóng quá!” nói thế nào?', opts:['很热了','太热了','热太了','是太热'], a:1, ex:'Cấu trúc nhấn mạnh: 太 + tính từ + 了 → 太热了.'},
+    {order:['明天','天气','怎么样'], vi:'Ngày mai thời tiết thế nào?', ex:'Thời gian + 天气 + 怎么样？'},
+    {order:['我','今天','不','太','舒服'], vi:'Hôm nay tôi không khỏe lắm.', ex:'Phủ định của 太…là 不太 + tính từ.'}
+  ]
+},
+/* ---------- BUỔI 16 · BÀI 13 ---------- */
+{ n:16, kind:'std', bai:13, title:'Hành động đang diễn ra', hanzi:'他在学做中国菜呢', sub:'Bài 13 · 在…呢， gọi điện thoại',
+  intro:'Mô tả việc đang xảy ra ngay lúc nói bằng 在/正在…呢 và thực hành mẫu câu gọi điện thoại cơ bản.',
+  vocab:[
+    ['在','zài','đang (trợ từ tiến hành)','tại'],['呢','ne','(trợ từ: đang diễn ra / hỏi lại)',''],
+    ['电话','diànhuà','điện thoại','điện thoại'],['打电话','dǎ diànhuà','gọi điện thoại',''],
+    ['喂','wèi','alo (khi nghe điện thoại)',''],['一块儿','yíkuàir','cùng nhau','nhất khối nhi'],
+    ['电视','diànshì','tivi','điện thị'],['看电视','kàn diànshì','xem tivi',''],
+    ['唱歌','chàng gē','hát','xướng ca'],['跳舞','tiào wǔ','nhảy múa','khiêu vũ'],
+    ['学','xué','học','học'],['做菜','zuò cài','nấu ăn','']
+  ],
+  grammar:[
+    {t:'Thể tiến hành: 在 / 正在 + động từ + 呢', f:'Chủ ngữ + 在/正在 + động từ + tân ngữ (+ 呢)', d:'Muốn nói một việc đang diễn ra: dùng 在 hoặc 正在 trước động từ, thường thêm 呢 cuối câu. Phủ định: 没在 + động từ. Cả ba thành phần có thể rút gọn: 他在看书呢 / 他看书呢 đều đúng.', ex:[['他在学做中国菜呢。','Tā zài xué zuò Zhōngguó cài ne.','Anh ấy đang học nấu món Trung.'],['我没在看电视。','Wǒ méi zài kàn diànshì.','Tôi không đang xem tivi.']]},
+    {t:'Mẫu câu gọi điện thoại', f:'喂？· 你找谁？· 他在…呢', d:'Nghe điện thoại bắt đầu bằng 喂 wèi (thanh 4 khi chào hỏi). Hỏi tìm ai: 你找谁？(Bạn tìm ai?). Đây là mẫu giao tiếp thực tế xuất hiện nhiều trong bài nghe HSK 1.', ex:[['喂，你找谁？','Wèi, nǐ zhǎo shéi?','Alo, bạn tìm ai?'],['他正在打电话呢。','Tā zhèngzài dǎ diànhuà ne.','Anh ấy đang gọi điện thoại.']]}
+  ],
+  dlg:[
+    {t:'Gọi điện tìm Đại Vệ', lines:[
+      ['A','喂，你好！','Wèi, nǐ hǎo!','Alo, xin chào!'],
+      ['B','你好！大卫在吗？','Nǐ hǎo! Dàwèi zài ma?','Chào bạn! Đại Vệ có đó không?'],
+      ['A','他在呢。他正在看电视呢。','Tā zài ne. Tā zhèngzài kàn diànshì ne.','Anh ấy có đây. Anh ấy đang xem tivi.']
+    ]},
+    {t:'Các bạn đang làm gì?', lines:[
+      ['A','你们在做什么呢？','Nǐmen zài zuò shénme ne?','Các bạn đang làm gì vậy?'],
+      ['B','我们在唱歌呢，他们在跳舞。','Wǒmen zài chàng gē ne, tāmen zài tiào wǔ.','Chúng tôi đang hát, họ đang nhảy múa.']
+    ]}
+  ],
+  quiz:[
+    {q:'“Anh ấy đang đọc sách” nói thế nào?', opts:['他是看书。','他在看书呢。','他看书了在。','他会看书呢。'], a:1, ex:'Thể tiến hành: 在 + động từ + 呢 → 他在看书呢.'},
+    {q:'Phủ định của thể tiến hành dùng từ nào?', opts:['不在 + động từ','没在 + động từ','不是 + động từ','不会 + động từ'], a:1, ex:'Phủ định của 在…呢 là 没在: 我没在看电视.'},
+    {order:['他','在','学','做','中国菜','呢'], vi:'Anh ấy đang học nấu món Trung.', ex:'在 + động từ + tân ngữ + 呢.'},
+    {order:['你','在','做','什么','呢'], vi:'Bạn đang làm gì vậy?', ex:'Câu hỏi tiến hành: 在 + động từ + 什么 + 呢？'}
+  ]
+},
+/* ---------- BUỔI 17 · BÀI 14 ---------- */
+{ n:17, kind:'std', bai:14, title:'Mua sắm & việc đã xảy ra', hanzi:'她买了不少衣服', sub:'Bài 14 · Trợ từ 了， phó từ 都',
+  intro:'Kể việc đã hoàn thành bằng trợ từ 了， mua sắm quần áo với lượng từ 件 và phó từ tổng quát 都.',
+  vocab:[
+    ['了','le','(trợ từ: đã hoàn thành)','liễu'],['衣服','yīfu','quần áo','y phục'],
+    ['不少','bùshǎo','không ít, khá nhiều','bất thiểu'],['都','dōu','đều, tất cả','đô'],
+    ['件','jiàn','cái, chiếc (lượng từ cho áo)','kiện'],['便宜','piányi','rẻ','tiện nghi'],
+    ['贵','guì','đắt','quý'],['苹果','píngguǒ','quả táo','bình quả'],
+    ['看见','kànjiàn','nhìn thấy','khán kiến'],['买','mǎi','mua','mãi'],
+    ['这件','zhè jiàn','cái (áo) này',''],['颜色','yánsè','màu sắc','nhan sắc']
+  ],
+  grammar:[
+    {t:'Trợ từ 了 — việc đã hoàn thành', f:'Động từ + 了 + tân ngữ', d:'了 đặt ngay sau động từ để chỉ hành động đã xảy ra/hoàn thành. Phủ định: 没 + động từ (bỏ 了）: 我没买 (Tôi đã không mua). Lưu ý 了 không phải “thì quá khứ” tuyệt đối — nó nhấn vào sự hoàn thành.', ex:[['她买了不少衣服。','Tā mǎi le bùshǎo yīfu.','Cô ấy đã mua không ít quần áo.'],['我没看见他。','Wǒ méi kànjiàn tā.','Tôi đã không nhìn thấy anh ấy.']]},
+    {t:'Phó từ 都 — đều, tất cả', f:'Chủ ngữ (số nhiều) + 都 + động từ', d:'都 đứng trước động từ, quy về toàn bộ chủ ngữ ở phía trước: 这些衣服都很漂亮 (Những bộ quần áo này đều rất đẹp). 都 luôn đứng sau chủ ngữ, không đứng đầu câu.', ex:[['我们都是学生。','Wǒmen dōu shì xuésheng.','Chúng tôi đều là học sinh.'],['这几件衣服都很便宜。','Zhè jǐ jiàn yīfu dōu hěn piányi.','Mấy bộ quần áo này đều rất rẻ.']]}
+  ],
+  dlg:[
+    {t:'Đi mua quần áo', lines:[
+      ['A','你买了什么？','Nǐ mǎi le shénme?','Bạn đã mua gì?'],
+      ['B','我买了不少衣服。这件怎么样？','Wǒ mǎi le bùshǎo yīfu. Zhè jiàn zěnmeyàng?','Tôi đã mua khá nhiều quần áo. Cái này thế nào?'],
+      ['A','很漂亮！多少钱？','Hěn piàoliang! Duōshao qián?','Rất đẹp! Bao nhiêu tiền?'],
+      ['B','不贵，八十块。','Bú guì, bāshí kuài.','Không đắt, 80 đồng.']
+    ]},
+    {t:'Bạn có nhìn thấy cô ấy không?', lines:[
+      ['A','你看见李月了吗？','Nǐ kànjiàn Lǐ Yuè le ma?','Bạn có nhìn thấy Lý Nguyệt không?'],
+      ['B','我没看见她。','Wǒ méi kànjiàn tā.','Tôi không nhìn thấy cô ấy.']
+    ]}
+  ],
+  quiz:[
+    {q:'Phủ định của “她买了衣服” là…', opts:['她不买了衣服。','她没买衣服。','她没买了衣服。','她不是买衣服。'], a:1, ex:'Phủ định của 了 dùng 没 và bỏ 了: 她没买衣服.'},
+    {q:'“Chúng tôi đều là học sinh” — vị trí của 都 đúng là…', opts:['都 chúng tôi là học sinh','Chúng tôi 都 là học sinh','Chúng tôi là 都 học sinh','Chúng tôi là học sinh 都'], a:1, ex:'都 đứng sau chủ ngữ, trước động từ: 我们都是学生.'},
+    {order:['她','买','了','不少','衣服'], vi:'Cô ấy đã mua không ít quần áo.', ex:'Động từ + 了 + tân ngữ: 买了不少衣服.'},
+    {order:['我','没','看见','他'], vi:'Tôi đã không nhìn thấy anh ấy.', ex:'Phủ định việc đã xảy ra: 没 + động từ, không có 了.'}
+  ]
+},
+/* ---------- BUỔI 18 · BÀI 15 ---------- */
+{ n:18, kind:'std', bai:15, title:'Phương tiện & nhấn mạnh', hanzi:'我是坐飞机来的', sub:'Bài 15 · Cấu trúc 是…的',
+  intro:'Bài cuối của HSK 1: nói cách di chuyển bằng phương tiện và nhấn mạnh chi tiết của việc đã xảy ra bằng cấu trúc 是…的.',
+  vocab:[
+    ['飞机','fēijī','máy bay','phi cơ'],['坐','zuò','đi (bằng phương tiện)','tọa'],
+    ['来','lái','đến','lai'],['出租车','chūzūchē','taxi','xuất tô xa'],
+    ['怎么','zěnme','thế nào, bằng cách nào',''],['火车','huǒchē','tàu hỏa','hỏa xa'],
+    ['远','yuǎn','xa','viễn'],['近','jìn','gần','cận'],
+    ['走路','zǒu lù','đi bộ','tẩu lộ'],['开车','kāi chē','lái xe','khai xa'],
+    ['公共汽车','gōnggòng qìchē','xe buýt','công cộng khí xa'],['快','kuài','nhanh','khoái']
+  ],
+  grammar:[
+    {t:'Cấu trúc nhấn mạnh 是…的', f:'Chủ ngữ + 是 + [thời gian/nơi chốn/cách thức] + động từ + 的', d:'Với việc đã xảy ra, 是…的 dùng để nhấn mạnh chi tiết: đến khi nào, ở đâu, bằng cách nào, cùng ai. 是 có thể lược bỏ nhưng 的 thì không: 我是坐飞机来的 (Tôi đến bằng máy bay).', ex:[['你是怎么来的？','Nǐ shì zěnme lái de?','Bạn đến bằng cách nào?'],['我是坐出租车来的。','Wǒ shì zuò chūzūchē lái de.','Tôi đến bằng taxi.'],['他是昨天来的。','Tā shì zuótiān lái de.','Anh ấy đến vào hôm qua.']]},
+    {t:'Đi bằng phương tiện: 坐 + phương tiện', f:'坐 + 飞机/火车/出租车/公共汽车', d:'坐 dùng cho hầu hết phương tiện: 坐飞机 (đi máy bay), 坐火车 (đi tàu). Lái xe tự lái thì dùng 开车， đi bộ là 走路. Hỏi cách di chuyển: 你怎么去？(Bạn đi bằng gì?).', ex:[['我坐飞机去北京。','Wǒ zuò fēijī qù Běijīng.','Tôi đi máy bay đến Bắc Kinh.'],['学校很近，我走路去。','Xuéxiào hěn jìn, wǒ zǒu lù qù.','Trường rất gần, tôi đi bộ đến.']]}
+  ],
+  dlg:[
+    {t:'Bạn đến bằng gì?', lines:[
+      ['A','你是怎么来的？','Nǐ shì zěnme lái de?','Bạn đến bằng cách nào?'],
+      ['B','我是坐飞机来的。','Wǒ shì zuò fēijī lái de.','Tôi đến bằng máy bay.'],
+      ['A','飞机快吗？','Fēijī kuài ma?','Máy bay có nhanh không?'],
+      ['B','很快，两个小时。','Hěn kuài, liǎng gè xiǎoshí.','Rất nhanh, hai tiếng.']
+    ]},
+    {t:'Đi học bằng gì?', lines:[
+      ['A','你每天怎么去学校？','Nǐ měitiān zěnme qù xuéxiào?','Mỗi ngày bạn đến trường bằng gì?'],
+      ['B','我坐公共汽车去，学校不太远。','Wǒ zuò gōnggòng qìchē qù, xuéxiào bú tài yuǎn.','Tôi đi xe buýt, trường không xa lắm.']
+    ]}
+  ],
+  quiz:[
+    {q:'Trong cấu trúc 是…的， thành phần nào KHÔNG được lược bỏ?', opts:['是','的','Chủ ngữ','Động từ'], a:1, ex:'Có thể lược bỏ 是 nhưng 的 bắt buộc phải giữ: 我坐飞机来的 vẫn đúng, thiếu 的 thì sai.'},
+    {q:'“Đi tàu hỏa” nói thế nào?', opts:['开火车','坐火车','走火车','来火车'], a:1, ex:'Đi bằng phương tiện dùng 坐: 坐火车， 坐飞机， 坐出租车.'},
+    {order:['我','是','坐','飞机','来','的'], vi:'Tôi đến bằng máy bay.', ex:'Cấu trúc nhấn mạnh: 是 + cách thức + động từ + 的.'},
+    {order:['你','是','怎么','来','的'], vi:'Bạn đến bằng cách nào?', ex:'Hỏi cách thức của việc đã xảy ra: 是怎么来的？'}
+  ]
+}
+);
+</script>
+<script>
+/* ================= ỨNG DỤNG ================= */
+const $ = s => document.querySelector(s);
+const view = $('#view');
+const state = { view:'home', lesson:1, tab:'vocab', done:new Set(), saved:new Map(), rate:1, showPy:true, showVi:true, quizBest:{} };
+const CP = [
+  {after:5,  name:'Ôn tập 1', range:[1,5],  desc:'Ôn lại phát âm nền tảng + Bài 1–2: chào hỏi, cảm ơn, quốc tịch, gia đình.'},
+  {after:10, name:'Ôn tập 2', range:[6,10], desc:'Ôn Bài 3–7: giới thiệu người khác, tuổi tác, khả năng 会, ngày tháng.'},
+  {after:15, name:'Ôn tập 3', range:[11,15],desc:'Ôn Bài 8–12: mua sắm, vị trí, xin phép, giờ giấc, thời tiết.'},
+  {after:18, name:'Ôn tập 4', range:[16,18],desc:'Ôn Bài 13–15: hành động đang diễn ra, trợ từ 了, cấu trúc 是…的.'}
+];
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function sample(a,n){ return shuffle(a).slice(0,n); }
+function lesson(n){ return LESSONS.find(l=>l.n===n); }
+function vocabOf(l){ if(l.vocab) return l.vocab; const out=[]; (l.groups||[]).forEach(g=>g.items.forEach(it=>out.push([it[0],it[1],it[2],'']))); return out; }
+function allVocab(range){ const out=[]; LESSONS.filter(l=>l.n>=range[0]&&l.n<=range[1]).forEach(l=>vocabOf(l).forEach(v=>out.push({v:v, ln:l.n}))); return out; }
+const TOTAL_VOCAB = LESSONS.reduce((s,l)=>s+vocabOf(l).length,0);
+
+/* ---------- Đọc phát âm (TTS) — ưu tiên giọng nữ ---------- */
+let zhVoice=null;
+function pickVoice(){
+  try{
+    const all=speechSynthesis.getVoices();
+    const vs=all.filter(v=>/^zh/i.test(v.lang)||/chinese|mandarin|普通话|國語|国语|中文|粤語|粵語/i.test(v.name||''));
+    if(!vs.length){ zhVoice=null; return; }
+    /* Tên các giọng nữ tiếng Trung phổ biến trên Windows / Edge, Apple và Android */
+    const femaleNames=['xiaoxiao','xiaohan','xiaomeng','xiaomo','xiaoqiu','xiaorui','xiaoshuang','xiaoxuan','xiaoya','xiaoyan','xiaoyi','xiaoyou','xiaozhen','xiaoxue','xiaoyu','xiaojie','huihui','yaoyao','ting-ting','tingting','ting ting','mei-jia','meijia','mei jia','sin-ji','sinji','sin ji','yu-shu','yushu','lili','xiaomei','xiaolin','xiaowen'];
+    /* Tên các giọng nam tiếng Trung phổ biến — tránh chọn */
+    const maleNames=['kangkang','yunyang','yunye','yunjian','yunxi','yunfeng','yunhao','zhiwei','guoliang','li-mu','limu','yunze','yunjie'];
+    function score(v){
+      const n=((v.name||'')+' '+(v.voiceURI||'')).toLowerCase();
+      let s=0;
+      if(/female|woman|girl/.test(n)) s+=120;
+      if(femaleNames.some(x=>n.includes(x))) s+=90;
+      if(maleNames.some(x=>n.includes(x))) s-=90;
+      if(/(^|[^a-z])male([^a-z]|$)/.test(n)&&!/female/.test(n)) s-=120;
+      if(/google/.test(n)) s+=20; /* Giọng Google 普通话 / 國語 mặc định là giọng nữ */
+      if(/zh[-_]cn/i.test(v.lang)) s+=10;
+      else if(/zh[-_]tw/i.test(v.lang)) s+=6;
+      else if(/zh[-_]hk/i.test(v.lang)) s+=4;
+      if(v.default) s+=2;
+      return s;
+    }
+    vs.sort((a,b)=>score(b)-score(a));
+    zhVoice=vs[0];
+    const lbl=document.getElementById('voiceName');
+    if(lbl) lbl.textContent=zhVoice?('Giọng nữ · '+zhVoice.name):'Giọng nữ (mặc định của thiết bị)';
+  }catch(e){}
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function speak(text){ try{ if(!('speechSynthesis' in window)) return; if(!zhVoice) pickVoice(); const u=new SpeechSynthesisUtterance(text); u.lang='zh-CN'; if(zhVoice) u.voice=zhVoice; u.pitch=1.1; u.rate=state.rate; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){} }
+let toastTimer=null;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),2200); }
+
+/* ---------- Sidebar ---------- */
+function renderSidebar(){
+  const sb=$('#sidebar'); const doneN=state.done.size;
+  let h='<div class="side-title"><span class="seal">汉</span> Tự Học Tiếng Trung</div>'
+    +'<div class="side-sub">Lộ trình HSK 1 · 18 buổi từ phát âm đến Bài 15</div>'
+    +'<div class="prog-wrap"><div class="prog-row"><span>Tiến độ khóa học</span><span>'+doneN+'/18 buổi · '+Math.round(doneN/18*100)+'%</span></div>'
+    +'<div class="prog-bar"><div class="prog-fill" style="width:'+(doneN/18*100)+'%"></div></div></div>'
+    +'<div class="side-tools">'
+    +'<button class="tool-btn" data-go="notebook">'+IC.book+' Sổ tay <span class="cnt" id="nbCount">'+state.saved.size+'</span></button>'
+    +'<button class="tool-btn" data-go="planner">'+IC.spark+' Gợi ý lộ trình</button>'
+    +'</div>'
+    +'<div class="field" style="margin-top:12px"><label for="rateSel" class="small muted">Tốc độ đọc mẫu · <span id="voiceName">Giọng nữ</span></label>'
+    +'<select id="rateSel"><option value="0.7">Chậm · 0.7x</option><option value="0.85">Vừa · 0.85x</option><option value="1">Chuẩn · 1.0x</option></select>'
+    +'<div class="small muted" style="margin-top:6px">Đọc mẫu dùng giọng nữ tiếng Trung trên thiết bị của bạn.</div></div>';
+  const item=(l)=>{
+    const isA = state.view==='lesson'&&state.lesson===l.n;
+    return '<button class="litem'+(state.done.has(l.n)?' done':'')+(isA?' active':'')+'" data-lesson="'+l.n+'">'
+      +'<span class="num">'+(state.done.has(l.n)?'✓':l.n)+'</span>'
+      +'<span><span class="tt">Buổi '+String(l.n).padStart(2,'0')+(l.bai?' · Bài '+l.bai:'')+': '+esc(l.title)+'</span>'
+      +'<span class="ss" style="display:block">'+esc(l.sub)+'</span></span></button>';
+  };
+  const cpItem=(cp,i)=>{
+    const isA = state.view==='review'&&state.cp===i;
+    return '<button class="litem review'+(isA?' active':'')+'" data-cp="'+i+'"><span class="num">↻</span>'
+      +'<span><span class="tt">'+cp.name+' · Buổi '+cp.range[0]+'–'+cp.range[1]+'</span>'
+      +'<span class="ss" style="display:block">Flashcard + quiz tổng hợp</span></span></button>';
+  };
+  h+='<div class="part-label">Phần 1 · Phát âm nền tảng</div>';
+  LESSONS.slice(0,3).forEach(l=>{ h+=item(l); });
+  h+='<div class="part-label">Phần 2 · Giáo trình HSK 1 (Bài 1–15)</div>';
+  LESSONS.slice(3).forEach(l=>{
+    h+=item(l);
+    CP.forEach((cp,i)=>{ if(cp.after===l.n) h+=cpItem(cp,i); });
+  });
+  h+='<button class="litem final'+(state.view==='final'?' active':'')+'" data-go="final"><span class="num">★</span>'
+    +'<span><span class="tt">Kiểm tra cuối khóa</span><span class="ss" style="display:block">Mô phỏng HSK 1 · 20 câu · đạt từ 60%</span></span></button>';
+  sb.innerHTML=h;
+  if('speechSynthesis' in window) pickVoice();
+  const vn=$('#voiceName'); if(vn) vn.textContent=zhVoice?('Giọng nữ · '+zhVoice.name):'Giọng nữ';
+  $('#rateSel').value=String(state.rate);
+  $('#rateSel').addEventListener('change',e=>{ state.rate=parseFloat(e.target.value); toast('Tốc độ đọc: '+state.rate+'x'); });
+  sb.querySelectorAll('[data-lesson]').forEach(b=>b.addEventListener('click',()=>{ go('lesson',+b.dataset.lesson); }));
+  sb.querySelectorAll('[data-cp]').forEach(b=>b.addEventListener('click',()=>{ go('review',+b.dataset.cp); }));
+  sb.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{ go(b.dataset.go); }));
+  const tp=$('#topProg'); if(tp) tp.textContent=doneN+'/18 buổi';
+}
+function closeDrawer(){ $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('on'); }
+$('#menuBtn').addEventListener('click',()=>{ $('#sidebar').classList.add('open'); $('#scrim').classList.add('on'); });
+$('#scrim').addEventListener('click',closeDrawer);
+
+function go(v,param){
+  state.view=v; closeDrawer();
+  if(v==='lesson'){ state.lesson=param; state.tab = lesson(param).kind==='pron' ? 'sound' : 'vocab'; }
+  if(v==='review'){ state.cp=param; }
+  renderSidebar(); render(); window.scrollTo({top:0});
+}
+
+/* ================= TRANG CHỦ ================= */
+function renderHome(){
+  const next=LESSONS.find(l=>!state.done.has(l.n));
+  const best=Object.values(state.quizBest);
+  const avg=best.length? Math.round(best.reduce((a,b)=>a+b,0)/best.length) : null;
+  let h='<h1>Lộ trình tự học HSK 1 — 18 buổi</h1>'
+    +'<p class="lede">Ba buổi đầu xây nền phát âm (thanh điệu, nguyên âm, biến điệu), mười lăm buổi tiếp theo đi hết 15 bài của giáo trình HSK 1 chuẩn: từ vựng, ngữ pháp, hội thoại, flashcard và quiz sau mỗi buổi, kèm 4 chặng ôn tập và một bài kiểm tra cuối khóa mô phỏng đề HSK 1.</p>'
+    +'<div class="stat-grid">'
+    +'<div class="stat"><div class="big">'+state.done.size+'/18</div><div class="lbl">buổi đã hoàn thành</div></div>'
+    +'<div class="stat"><div class="big">'+TOTAL_VOCAB+'</div><div class="lbl">từ vựng &amp; âm tiết toàn khóa</div></div>'
+    +'<div class="stat"><div class="big">'+state.saved.size+'</div><div class="lbl">từ đang lưu trong sổ tay</div></div>'
+    +'<div class="stat"><div class="big">'+(avg===null?'—':avg+'%')+'</div><div class="lbl">điểm quiz trung bình (lần tốt nhất)</div></div>'
+    +'</div>';
+  if(next){
+    h+='<div class="card" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px"><div style="flex:1;min-width:220px">'
+      +'<div class="chip red">Học tiếp</div><div style="font-weight:800;font-size:19px;margin-top:6px">Buổi '+next.n+': '+esc(next.title)+(next.hanzi?' · <span class="hz">'+esc(next.hanzi)+'</span>':'')+'</div>'
+      +'<div class="muted small">'+esc(next.sub)+'</div></div>'
+      +'<button class="btn primary" id="continueBtn">Vào buổi '+next.n+' →</button></div>';
+  } else {
+    h+='<div class="card" style="margin-bottom:20px"><strong>Bạn đã hoàn thành cả 18 buổi.</strong> <span class="muted">Hãy làm bài kiểm tra cuối khóa để đánh giá trình độ HSK 1 của mình.</span> <button class="btn primary" data-go="final" style="margin-left:8px">Kiểm tra cuối khóa</button></div>';
+  }
+  h+='<div class="card" style="margin-bottom:20px"><h3 style="margin-top:0">'+IC.search+' Tra cứu nhanh từ vựng</h3>'
+    +'<div class="field" style="margin:0"><input type="text" id="searchBox" placeholder="Gõ chữ Hán, pinyin hoặc nghĩa tiếng Việt… ví dụ: 谢谢, xièxie, cảm ơn" /></div>'
+    +'<div class="search-results" id="searchRes"></div></div>';
+  h+='<h2>Tất cả các buổi</h2><div class="path-grid">';
+  LESSONS.forEach(l=>{
+    h+='<button class="path-card" data-lesson="'+l.n+'"><span class="chip '+(state.done.has(l.n)?'jade':'')+'">'+(state.done.has(l.n)?'✓ Đã học':'Buổi '+l.n+(l.bai?' · Bài '+l.bai:''))+'</span>'
+      +'<div class="tt">'+esc(l.title)+'</div><div class="ss">'+esc(l.sub)+' · '+vocabOf(l).length+' mục từ vựng</div></button>';
+  });
+  h+='</div>';
+  view.innerHTML=h;
+  const cb=$('#continueBtn'); if(cb) cb.addEventListener('click',()=>go('lesson',next.n));
+  view.querySelectorAll('[data-lesson]').forEach(b=>b.addEventListener('click',()=>go('lesson',+b.dataset.lesson)));
+  view.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  const sb=$('#searchBox');
+  sb.addEventListener('input',()=>{
+    const q=sb.value.trim().toLowerCase(); const box=$('#searchRes');
+    if(!q){ box.innerHTML=''; return; }
+    let out='';
+    LESSONS.forEach(l=>{
+      if(l.title.toLowerCase().includes(q)||(l.hanzi&&l.hanzi.includes(sb.value.trim()))) out+='<button class="sr-item" data-jump="'+l.n+'"><strong>Buổi '+l.n+': '+esc(l.title)+'</strong><span class="muted small">'+esc(l.sub)+'</span></button>';
+      vocabOf(l).forEach(v=>{
+        if(v[0].includes(sb.value.trim())||v[1].toLowerCase().includes(q)||v[2].toLowerCase().includes(q))
+          out+='<button class="sr-item" data-jump="'+l.n+'"><span class="hz" style="font-size:20px;font-weight:700">'+esc(v[0])+'</span><span style="color:var(--accent-ink);font-weight:600">'+esc(v[1])+'</span><span>'+esc(v[2])+'</span><span class="spacer"></span><span class="chip">Buổi '+l.n+'</span></button>';
+      });
+    });
+    box.innerHTML=out||'<div class="muted small" style="padding:6px 2px">Không tìm thấy kết quả nào.</div>';
+    box.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>go('lesson',+b.dataset.jump)));
+  });
+}
+
+/* ================= BUỔI HỌC ================= */
+function speakBtn(text,cls){ return '<button class="icon-btn '+(cls||'')+'" data-say="'+esc(text)+'" aria-label="Nghe phát âm: '+esc(text)+'">'+IC.spk+'</button>'; }
+function bindSay(root){ root.querySelectorAll('[data-say]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); speak(b.dataset.say); })); }
+
+function renderLesson(){
+  const l=lesson(state.lesson);
+  const tabs = l.kind==='pron'
+    ? [['sound','Phát âm'],['grammar','Lý thuyết'],['dialogue','Hội thoại'],['flash','Flashcard'],['quiz','Bài tập']]
+    : [['vocab','Từ vựng'],['grammar','Ngữ pháp'],['dialogue','Hội thoại'],['flash','Flashcard'],['quiz','Bài tập']];
+  let h='<div class="lesson-head"><div style="flex:1;min-width:240px">'
+    +'<span class="chip red">Buổi '+l.n+(l.bai?' · Bài '+l.bai+' HSK 1':' · Phát âm nền tảng')+'</span>'
+    +'<h1 style="margin-top:8px">'+esc(l.title)+(l.hanzi?' <span class="hz" style="color:var(--accent-ink)">'+esc(l.hanzi)+'</span>':'')+'</h1>'
+    +'<p class="lede">'+esc(l.intro)+'</p></div>'
+    +'<button class="btn '+(state.done.has(l.n)?'jade':'primary')+'" id="doneBtn">'+(state.done.has(l.n)?'✓ Đã hoàn thành':'Đánh dấu đã học xong')+'</button></div>';
+  h+='<div class="tabs" role="tablist">'+tabs.map(t=>'<button class="tab'+(state.tab===t[0]?' on':'')+'" data-tab="'+t[0]+'" role="tab">'+t[1]+'</button>').join('')+'</div>';
+  h+='<div id="tabBody"></div>';
+  h+='<div class="nav-row">'
+    +(l.n>1?'<button class="btn" id="prevBtn">← Buổi '+(l.n-1)+'</button>':'<span></span>')
+    +(l.n<18?'<button class="btn primary" id="nextBtn">Buổi '+(l.n+1)+' →</button>':'<button class="btn primary" data-go="final">Kiểm tra cuối khóa ★</button>')
+    +'</div>';
+  view.innerHTML=h;
+  view.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{ state.tab=b.dataset.tab; renderLesson(); }));
+  $('#doneBtn').addEventListener('click',()=>{ if(state.done.has(l.n)){ state.done.delete(l.n); toast('Đã bỏ đánh dấu Buổi '+l.n); } else { state.done.add(l.n); toast('Đã hoàn thành Buổi '+l.n+'. Tốt lắm!'); } renderSidebar(); renderLesson(); });
+  const pv=$('#prevBtn'); if(pv) pv.addEventListener('click',()=>go('lesson',l.n-1));
+  const nx=$('#nextBtn'); if(nx) nx.addEventListener('click',()=>go('lesson',l.n+1));
+  view.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  renderTab(l);
+}
+
+function renderTab(l){
+  const body=$('#tabBody');
+  if(state.tab==='vocab') body.innerHTML=vocabHTML(l);
+  else if(state.tab==='sound') body.innerHTML=soundHTML(l);
+  else if(state.tab==='grammar') body.innerHTML=grammarHTML(l);
+  else if(state.tab==='dialogue') body.innerHTML=dialogueHTML(l);
+  else if(state.tab==='flash'){ body.innerHTML=flashHTML(); startFlash(vocabOf(l).map(v=>({hz:v[0],py:v[1],vi:v[2],hv:v[3]})),'Bộ thẻ Buổi '+l.n); bindFlash(body); }
+  else if(state.tab==='quiz'){ body.innerHTML='<div id="quizRoot"></div>'; startQuiz(buildLessonQuiz(l),'lesson'+l.n); }
+  bindSay(body); bindSave(body);
+}
+function bindSave(root){
+  root.querySelectorAll('[data-save]').forEach(b=>b.addEventListener('click',()=>{
+    const hz=b.dataset.save;
+    if(state.saved.has(hz)){ state.saved.delete(hz); b.classList.remove('saved'); b.innerHTML=IC.bm; toast('Đã bỏ “'+hz+'” khỏi sổ tay'); }
+    else { const l=lesson(state.lesson); const v=vocabOf(l).find(x=>x[0]===hz); state.saved.set(hz,{hz:v[0],py:v[1],vi:v[2],ln:l.n}); b.classList.add('saved'); b.innerHTML=IC.bmFill; toast('Đã lưu “'+hz+'” vào sổ tay'); }
+    const c=$('#nbCount'); if(c) c.textContent=state.saved.size;
+  }));
+}
+function vocabHTML(l){
+  let h='<div class="row" style="margin-bottom:14px"><span class="muted small">'+vocabOf(l).length+' từ · bấm loa để nghe đọc mẫu, bấm dấu trang để lưu vào sổ tay ôn tập.</span></div><div class="vocab-grid">';
+  vocabOf(l).forEach(v=>{
+    const saved=state.saved.has(v[0]);
+    h+='<div class="vcard"><div class="acts">'+speakBtn(v[0])+'<button class="icon-btn'+(saved?' saved':'')+'" data-save="'+esc(v[0])+'" aria-label="Lưu vào sổ tay">'+(saved?IC.bmFill:IC.bm)+'</button></div>'
+      +'<div class="hz">'+esc(v[0])+'</div><div class="py">'+esc(v[1])+'</div><div class="vi">'+esc(v[2])+'</div>'
+      +(v[3]?'<div class="hv">Hán–Việt: '+esc(v[3])+'</div>':'')+'</div>';
+  });
+  return h+'</div>';
+}
+function soundHTML(l){
+  let h='';
+  if(l.tones){
+    h+='<h3 style="margin-top:2px">Bốn thanh điệu &amp; thanh nhẹ — phần cốt lõi của buổi này</h3>'
+      +'<div class="card" style="padding:6px 14px;overflow-x:auto"><table class="tone-table"><tr><th>Thanh</th><th>Tên gọi</th><th>Ví dụ</th><th>Cách đọc</th><th></th></tr>';
+    l.tones.forEach(t=>{
+      h+='<tr><td class="tone-sig">'+t.sig+'</td><td><strong>'+esc(t.name)+'</strong></td>'
+        +'<td><span class="hz" style="font-size:21px;font-weight:700">'+esc(t.hz)+'</span> '+esc(t.ex)+' · '+esc(t.vi)+'</td>'
+        +'<td class="muted">'+esc(t.desc)+'</td><td>'+speakBtn(t.hz)+'</td></tr>';
+    });
+    h+='</table></div>'
+      +'<p class="small muted">Luyện tập: bấm loa nghe từng chữ 妈 mā – 麻 má – 马 mǎ – 骂 mà. Cùng một âm “ma”, bốn thanh điệu cho bốn nghĩa hoàn toàn khác nhau — đây là lý do thanh điệu quan trọng hơn mọi thứ khác ở giai đoạn này.</p>'
+      +'<button class="btn" id="toneDrill">'+IC.play+' Nghe liền 4 thanh: mā má mǎ mà</button>';
+  }
+  (l.groups||[]).forEach(g=>{
+    h+='<div class="grp"><div class="grp-head"><span class="gname">'+esc(g.name)+'</span></div>'
+      +(g.note?'<p class="muted small" style="margin:4px 0 0">'+esc(g.note)+'</p>':'')
+      +'<div class="sound-grid">'
+      +g.items.map(it=>'<div class="scard"><div style="flex:1"><div class="hz">'+esc(it[0])+'</div><div style="color:var(--accent-ink);font-weight:600;font-size:14px">'+esc(it[1])+'</div><div class="small muted">'+esc(it[2])+'</div></div>'+speakBtn(it[0])+'</div>').join('')
+      +'</div></div>';
+  });
+  setTimeout(()=>{ const d=$('#toneDrill'); if(d) d.addEventListener('click',()=>{ speak('妈，麻，马，骂'); }); },0);
+  return h;
+}
+function grammarHTML(l){
+  return l.grammar.map(g=>'<div class="grammar-card"><h3 style="margin-top:0">'+esc(g.t)+'</h3>'
+    +'<div class="formula">'+esc(g.f)+'</div><p style="margin:6px 0">'+esc(g.d)+'</p>'
+    +g.ex.map(e=>'<div class="ex-row"><div style="flex:1"><div class="hz">'+esc(e[0])+'</div><div style="color:var(--accent-ink);font-size:14px;font-weight:600">'+esc(e[1])+'</div><div class="muted small">'+esc(e[2])+'</div></div>'+speakBtn(e[0])+'</div>').join('')
+    +'</div>').join('');
+}
+function dialogueHTML(l){
+  let h='<div class="row" style="margin-bottom:6px"><button class="btn small" id="tgPy">'+(state.showPy?'Ẩn pinyin':'Hiện pinyin')+'</button>'
+    +'<button class="btn small" id="tgVi">'+(state.showVi?'Ẩn bản dịch':'Hiện bản dịch')+'</button>'
+    +'<span class="muted small">Mẹo: ẩn pinyin và dịch, tự đọc chữ Hán rồi mới đối chiếu — cách luyện đọc hiệu quả nhất.</span></div>';
+  l.dlg.forEach((d,di)=>{
+    h+='<div class="dlg"><div class="row"><h3 style="margin:0;flex:1">'+esc(d.t)+'</h3><button class="btn small" data-playall="'+di+'">'+IC.play+' Nghe cả hội thoại</button></div>';
+    d.lines.forEach(line=>{
+      h+='<div class="line '+(line[0]==='B'?'b':'')+'"><span class="who">'+line[0]+'</span><div style="flex:1">'
+        +'<div class="hz">'+esc(line[1])+'</div>'
+        +(state.showPy?'<div class="py">'+esc(line[2])+'</div>':'')
+        +(state.showVi?'<div class="vi">'+esc(line[3])+'</div>':'')
+        +'</div>'+speakBtn(line[1])+'</div>';
+    });
+    h+='</div>';
+  });
+  setTimeout(()=>{
+    const a=$('#tgPy'); if(a) a.addEventListener('click',()=>{ state.showPy=!state.showPy; renderTab(lesson(state.lesson)); });
+    const b=$('#tgVi'); if(b) b.addEventListener('click',()=>{ state.showVi=!state.showVi; renderTab(lesson(state.lesson)); });
+    view.querySelectorAll('[data-playall]').forEach(btn=>btn.addEventListener('click',()=>{
+      const d=lesson(state.lesson).dlg[+btn.dataset.playall]; speak(d.lines.map(x=>x[1]).join(' '));
+    }));
+  },0);
+  return h;
+}
+
+/* ================= FLASHCARD ================= */
+let FC=null;
+function flashHTML(){
+  return '<p class="muted small" style="text-align:center">Mặt trước chỉ có chữ Hán — hãy tự nhớ pinyin và nghĩa trước khi lật thẻ.</p>'
+    +'<div class="fc-stage"><div class="fc" id="fcCard">'
+    +'<div class="fc-face fc-front"><div class="big-hz hz" id="fcHz"></div><div class="hint">Chạm vào thẻ để xem đáp án</div></div>'
+    +'<div class="fc-face fc-back"><div class="big-hz hz" id="fcHz2" style="font-size:40px"></div><div class="py" id="fcPy"></div><div class="vi" id="fcVi"></div><div class="hint" id="fcHv"></div><button class="btn small" id="fcSay">'+IC.spk+' Nghe đọc</button></div>'
+    +'</div></div>'
+    +'<div class="fc-nav"><button class="btn" id="fcPrev">← Trước</button><span class="chip" id="fcCount"></span><button class="btn" id="fcNext">Tiếp →</button>'
+    +'<button class="btn" id="fcShuffle">'+IC.refresh+' Xáo trộn</button></div>'
+    +'<div id="fcExtra"></div>';
+}
+function startFlash(deck,label){ FC={deck:deck.slice(), i:0, flip:false, label:label||''}; drawFlash(); }
+function drawFlash(){
+  if(!FC||!FC.deck.length) return;
+  const c=FC.deck[FC.i];
+  const card=$('#fcCard'); if(!card) return;
+  card.classList.toggle('flip',FC.flip);
+  $('#fcHz').textContent=c.hz; $('#fcHz2').textContent=c.hz;
+  $('#fcPy').textContent=c.py; $('#fcVi').textContent=c.vi;
+  $('#fcHv').textContent=c.hv?('Hán–Việt: '+c.hv):'';
+  $('#fcCount').textContent=(FC.i+1)+' / '+FC.deck.length;
+}
+function bindFlash(root){
+  const card=$('#fcCard'); if(!card) return;
+  card.addEventListener('click',e=>{ if(e.target.closest('#fcSay')) return; FC.flip=!FC.flip; drawFlash(); });
+  $('#fcSay').addEventListener('click',e=>{ e.stopPropagation(); speak(FC.deck[FC.i].hz); });
+  $('#fcPrev').addEventListener('click',()=>{ FC.i=(FC.i-1+FC.deck.length)%FC.deck.length; FC.flip=false; drawFlash(); });
+  $('#fcNext').addEventListener('click',()=>{ FC.i=(FC.i+1)%FC.deck.length; FC.flip=false; drawFlash(); });
+  $('#fcShuffle').addEventListener('click',()=>{ FC.deck=shuffle(FC.deck); FC.i=0; FC.flip=false; drawFlash(); toast('Đã xáo trộn bộ thẻ'); });
+}
+
+/* ================= QUIZ ================= */
+let QZ=null;
+function genVocabQs(pool,n,usedHz){
+  const qs=[]; const items=sample(pool.filter(p=>!usedHz||!usedHz.has(p.v[0])),n);
+  const types=['mean','py','vi2hz','listen'];
+  items.forEach((p,idx)=>{
+    const v=p.v; const others=sample(pool.filter(x=>x.v[0]!==v[0]),3).map(x=>x.v);
+    const t=types[idx%types.length];
+    if(t==='mean'||t==='listen'){
+      const opts=shuffle([v[2]].concat(others.map(o=>o[2])));
+      qs.push({type:'mcq', audio:t==='listen'?v[0]:null,
+        q:(t==='listen'?'Nghe và chọn nghĩa đúng của từ vừa phát:':'“<span class="hz">'+esc(v[0])+'</span>” nghĩa là gì?'),
+        opts:opts, a:opts.indexOf(v[2]), ex:'<span class="hz">'+esc(v[0])+'</span> '+esc(v[1])+' = '+esc(v[2])+'.'});
+    } else if(t==='py'){
+      const opts=shuffle([v[1]].concat(others.map(o=>o[1])));
+      qs.push({type:'mcq', q:'“<span class="hz">'+esc(v[0])+'</span>” đọc là…', opts:opts, a:opts.indexOf(v[1]), ex:'<span class="hz">'+esc(v[0])+'</span> đọc là '+esc(v[1])+'.'});
+    } else {
+      const opts=shuffle([v[0]].concat(others.map(o=>o[0])));
+      qs.push({type:'mcq', q:'Từ nào có nghĩa “'+esc(v[2])+'”?', opts:opts, a:opts.indexOf(v[0]), hzOpts:true, ex:'<span class="hz">'+esc(v[0])+'</span> '+esc(v[1])+' = '+esc(v[2])+'.'});
+    }
+  });
+  return qs;
+}
+function buildLessonQuiz(l){
+  const hand=l.quiz.map(q=>{
+    if(q.order) return {type:'order', words:q.order, vi:q.vi, ex:q.ex};
+    return {type:'mcq', q:esc(q.q), opts:q.opts, a:q.a, ex:esc(q.ex)};
+  });
+  const pool=vocabOf(l).map(v=>({v:v}));
+  const gen=genVocabQs(pool,4);
+  return shuffle(hand.concat(gen));
+}
+function startQuiz(qs,key){
+  QZ={qs:qs, key:key, answered:0, correct:0, done:{}};
+  drawQuiz();
+}
+function drawQuiz(){
+  const root=$('#quizRoot'); if(!root) return;
+  let h='';
+  if(QZ.answered===QZ.qs.length && QZ.qs.length){
+    const pct=Math.round(QZ.correct/QZ.qs.length*100);
+    const good=pct>=80;
+    h+='<div class="score-banner '+(good?'good':'mid')+'"><div class="big">'+QZ.correct+'/'+QZ.qs.length+' câu đúng · '+pct+'%</div>'
+      +'<div>'+(good?'Rất tốt! Bạn đã nắm chắc phần này.':'Khá ổn — xem lại phần giải thích của các câu sai rồi làm lại nhé.')+'</div>'
+      +'<div style="margin-top:12px"><button class="btn primary" id="qRetry">Làm lại bài tập</button></div></div>';
+    if(QZ.key && QZ.key.indexOf('lesson')===0){ const ln=+QZ.key.slice(6); const prev=state.quizBest[ln]||0; if(pct>prev) state.quizBest[ln]=pct; }
+    if(QZ.key==='final'){ state.finalBest=Math.max(state.finalBest||0,pct); }
+  }
+  QZ.qs.forEach((q,qi)=>{
+    h+='<div class="quiz-q"><div class="q">Câu '+(qi+1)+'. '+q.q
+      +(q.audio?' <button class="icon-btn" data-qsay="'+qi+'" aria-label="Nghe lại">'+IC.spk+'</button>':'')+'</div>';
+    if(q.type==='mcq'){
+      h+='<div class="opts">'+q.opts.map((o,oi)=>{
+        let cls='opt'; const st=QZ.done[qi];
+        if(st){ if(oi===q.a) cls+=' right'; else if(oi===st.pick) cls+=' wrong'; }
+        return '<button class="'+cls+'" data-q="'+qi+'" data-o="'+oi+'" '+(st?'disabled':'')+'>'+(q.hzOpts?'<span class="hz" style="font-size:18px">'+esc(o)+'</span>':esc(o))+'</button>';
+      }).join('')+'</div>';
+      if(QZ.done[qi]) h+='<div class="expl">'+(QZ.done[qi].ok?'✓ <strong>Đúng.</strong> ':'✗ <strong>Chưa đúng.</strong> ')+q.ex+'</div>';
+    } else {
+      const st=QZ.done[qi]; const picked=QZ['pick'+qi]||[];
+      const rest=q.words.map((w,wi)=>({w:w,i:wi})).filter(x=>picked.indexOf(x.i)<0);
+      h+='<div class="small muted">Sắp xếp các từ thành câu đúng — nghĩa: “'+esc(q.vi)+'”</div>'
+        +'<div class="answer-line" data-ans="'+qi+'">'+picked.map(pi=>'<button class="wchip hz" data-unpick="'+qi+':'+pi+'">'+esc(q.words[pi])+'</button>').join('')+(picked.length?'':'<span class="muted small">Bấm các từ bên dưới theo thứ tự…</span>')+'</div>'
+        +'<div class="wordbank">'+rest.map(x=>'<button class="wchip hz" data-pick="'+qi+':'+x.i+'">'+esc(x.w)+'</button>').join('')+'</div>'
+        +(!st?'<button class="btn small primary" data-check="'+qi+'">Kiểm tra</button>':'<div class="expl">'+(st.ok?'✓ <strong>Đúng.</strong> ':'✗ <strong>Chưa đúng.</strong> Đáp án: <span class="hz">'+esc(q.words.join(''))+'</span>. ')+esc(q.ex||'')+'</div>');
+    }
+    h+='</div>';
+  });
+  root.innerHTML=h;
+  root.querySelectorAll('[data-qsay]').forEach(b=>b.addEventListener('click',()=>speak(QZ.qs[+b.dataset.qsay].audio)));
+  root.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+    const qi=+b.dataset.q, oi=+b.dataset.o; const q=QZ.qs[qi];
+    QZ.done[qi]={pick:oi, ok:oi===q.a}; QZ.answered++; if(oi===q.a) QZ.correct++;
+    drawQuiz();
+  }));
+  root.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{
+    const parts=b.dataset.pick.split(':'); const qi=+parts[0], wi=+parts[1];
+    (QZ['pick'+qi]=QZ['pick'+qi]||[]).push(wi); drawQuiz();
+  }));
+  root.querySelectorAll('[data-unpick]').forEach(b=>b.addEventListener('click',()=>{
+    const parts=b.dataset.unpick.split(':'); const qi=+parts[0], wi=+parts[1];
+    QZ['pick'+qi]=QZ['pick'+qi].filter(x=>x!==wi); drawQuiz();
+  }));
+  root.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>{
+    const qi=+b.dataset.check; const q=QZ.qs[qi]; const picked=QZ['pick'+qi]||[];
+    const ok=picked.length===q.words.length && picked.every((wi,i)=>q.words[wi]===q.words[i] && wi===i) || (picked.map(i=>q.words[i]).join('')===q.words.join(''));
+    QZ.done[qi]={ok:ok}; QZ.answered++; if(ok) QZ.correct++;
+    drawQuiz();
+  }));
+  const rt=$('#qRetry'); if(rt) rt.addEventListener('click',()=>{ if(QZ.key&&QZ.key.indexOf('lesson')===0) startQuiz(buildLessonQuiz(lesson(+QZ.key.slice(6))),QZ.key); else location.hash=''; render(); });
+}
+
+/* ================= ÔN TẬP THEO CHẶNG ================= */
+let RV=null;
+function renderReview(){
+  const cp=CP[state.cp];
+  const pool=allVocab(cp.range);
+  let h='<span class="chip red">Chặng ôn tập</span><h1 style="margin-top:8px">'+cp.name+' — Buổi '+cp.range[0]+' đến '+cp.range[1]+'</h1>'
+    +'<p class="lede">'+esc(cp.desc)+' Chặng này có '+pool.length+' mục từ vựng. Ôn bằng flashcard tự chấm (đã thuộc / chưa thuộc — thẻ “chưa thuộc” sẽ quay lại cuối bộ), rồi làm quiz tổng hợp 12 câu.</p>'
+    +'<h2>1 · Flashcard ôn tập</h2><div id="rvFlash"></div>'
+    +'<h2>2 · Quiz tổng hợp</h2><div id="quizRoot"></div>';
+  view.innerHTML=h;
+  $('#rvFlash').innerHTML=flashHTML()+'<div class="fc-nav"><button class="btn jade" id="rvKnow">✓ Đã thuộc</button><button class="btn" id="rvAgain">↻ Chưa thuộc — ôn lại</button></div><p class="muted small" style="text-align:center" id="rvStat"></p>';
+  RV={deck:shuffle(pool.map(p=>({hz:p.v[0],py:p.v[1],vi:p.v[2],hv:p.v[3]}))), i:0, flip:false, known:0, total:pool.length};
+  FC=RV; drawFlash(); bindFlash($('#rvFlash'));
+  const stat=()=>{ const el=$('#rvStat'); if(el) el.textContent='Đã thuộc: '+RV.known+'/'+RV.total+' · Còn trong bộ: '+RV.deck.length; };
+  stat();
+  $('#rvKnow').addEventListener('click',()=>{ RV.deck.splice(RV.i,1); RV.known++; if(RV.i>=RV.deck.length) RV.i=0; RV.flip=false; if(!RV.deck.length){ $('#rvFlash').innerHTML='<div class="score-banner good"><div class="big">Hoàn thành!</div><div>Bạn đã thuộc hết '+RV.total+' mục từ của chặng này.</div></div>'; } else { drawFlash(); } stat(); });
+  $('#rvAgain').addEventListener('click',()=>{ const c=RV.deck.splice(RV.i,1)[0]; RV.deck.push(c); if(RV.i>=RV.deck.length) RV.i=0; RV.flip=false; drawFlash(); stat(); });
+  const handQs=[];
+  LESSONS.filter(l=>l.n>=cp.range[0]&&l.n<=cp.range[1]).forEach(l=>l.quiz.forEach(q=>{ if(!q.order) handQs.push({type:'mcq', q:esc(q.q), opts:q.opts, a:q.a, ex:esc(q.ex)}); }));
+  const qs=shuffle(sample(handQs,6).concat(genVocabQs(pool,6)));
+  const root=$('#quizRoot'); root.id='quizRoot';
+  QZ=null; startQuiz(qs,'review'+state.cp);
+}
+
+/* ================= KIỂM TRA CUỐI KHÓA ================= */
+function renderFinal(){
+  let h='<span class="chip red">Đánh giá cuối khóa</span><h1 style="margin-top:8px">Kiểm tra mô phỏng HSK 1</h1>'
+    +'<p class="lede">20 câu trắc nghiệm rút từ toàn bộ 15 bài: từ vựng, pinyin, ngữ pháp và nghe hiểu. Đạt từ 60% (12/20 câu) được xem là đạt chuẩn HSK 1 — tương đương mức 120/200 điểm của kỳ thi thật.</p>';
+  if(state.finalBest) h+='<p><span class="chip jade">Điểm tốt nhất của bạn: '+state.finalBest+'%</span></p>';
+  h+='<div id="quizRoot"></div>';
+  view.innerHTML=h;
+  const handQs=[];
+  LESSONS.forEach(l=>l.quiz.forEach(q=>{ if(!q.order) handQs.push({type:'mcq', q:esc(q.q), opts:q.opts, a:q.a, ex:esc(q.ex)}); }));
+  const pool=allVocab([1,18]);
+  const qs=shuffle(sample(handQs,10).concat(genVocabQs(pool,10)));
+  startQuiz(qs,'final');
+}
+
+/* ================= SỔ TAY ================= */
+function renderNotebook(){
+  const items=Array.from(state.saved.values());
+  let h='<h1>Sổ tay từ vựng</h1><p class="lede">Những từ bạn đã bấm lưu khi học. Dùng chế độ ôn tập bên dưới để kiểm tra trí nhớ: thẻ nào chưa thuộc sẽ quay lại cho đến khi bạn thuộc hết.</p>';
+  if(!items.length){
+    h+='<div class="empty">Sổ tay đang trống.<br/>Khi học từ vựng ở mỗi buổi, bấm nút dấu trang trên thẻ từ để lưu từ khó vào đây.</div>';
+  } else {
+    h+='<div class="row" style="margin-bottom:14px"><button class="btn primary" id="nbReview">Ôn tập '+items.length+' từ bằng flashcard</button></div>'
+      +'<div id="nbArea"></div><h2>Danh sách từ đã lưu</h2><div class="vocab-grid">'
+      +items.map(it=>'<div class="vcard"><div class="acts">'+speakBtn(it.hz)+'<button class="icon-btn" data-del="'+esc(it.hz)+'" aria-label="Xóa khỏi sổ tay">✕</button></div>'
+        +'<div class="hz">'+esc(it.hz)+'</div><div class="py">'+esc(it.py)+'</div><div class="vi">'+esc(it.vi)+'</div><div class="hv">Buổi '+it.ln+'</div></div>').join('')
+      +'</div>';
+  }
+  view.innerHTML=h;
+  bindSay(view);
+  view.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{ state.saved.delete(b.dataset.del); renderSidebar(); renderNotebook(); }));
+  const rb=$('#nbReview');
+  if(rb) rb.addEventListener('click',()=>{
+    const area=$('#nbArea');
+    area.innerHTML=flashHTML()+'<div class="fc-nav"><button class="btn jade" id="nbKnow">✓ Đã thuộc</button><button class="btn" id="nbAgain">↻ Chưa thuộc — ôn lại</button></div><p class="muted small" style="text-align:center" id="nbStat"></p>';
+    RV={deck:shuffle(items.map(it=>({hz:it.hz,py:it.py,vi:it.vi,hv:''}))), i:0, flip:false, known:0, total:items.length};
+    FC=RV; drawFlash(); bindFlash(area);
+    const stat=()=>{ const el=$('#nbStat'); if(el) el.textContent='Đã thuộc: '+RV.known+'/'+RV.total+' · Còn trong bộ: '+RV.deck.length; };
+    stat();
+    $('#nbKnow').addEventListener('click',()=>{ RV.deck.splice(RV.i,1); RV.known++; if(RV.i>=RV.deck.length) RV.i=0; RV.flip=false; if(!RV.deck.length){ area.innerHTML='<div class="score-banner good"><div class="big">Thuộc hết rồi!</div><div>Bạn đã thuộc cả '+RV.total+' từ trong sổ tay.</div></div>'; } else drawFlash(); stat(); });
+    $('#nbAgain').addEventListener('click',()=>{ const c=RV.deck.splice(RV.i,1)[0]; RV.deck.push(c); if(RV.i>=RV.deck.length) RV.i=0; RV.flip=false; drawFlash(); stat(); });
+    area.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+/* ================= TRỢ LÝ GỢI Ý LỘ TRÌNH ================= */
+let planSel={goal:'thi', days:4, mins:30};
+function renderPlanner(){
+  let h='<span class="chip red">Trợ lý gợi ý</span><h1 style="margin-top:8px">Xây lộ trình học theo nhịp của bạn</h1>'
+    +'<p class="lede">Trả lời 3 câu hỏi ngắn, trang sẽ tính cho bạn: mỗi tuần học những buổi nào, ngày dự kiến hoàn thành cả 18 buổi, và cách chia thời gian trong một buổi học.</p>'
+    +'<div class="card"><div class="field"><label>Mục tiêu học tiếng Trung của bạn</label><div class="radio-row" id="pGoal">'
+    +[['thi','Thi lấy chứng chỉ HSK 1'],['giao','Giao tiếp cơ bản hằng ngày'],['dulich','Đi du lịch Trung Quốc'],['sothich','Học vì sở thích, không áp lực']].map(g=>'<button class="radio-pill'+(planSel.goal===g[0]?' on':'')+'" data-v="'+g[0]+'">'+g[1]+'</button>').join('')+'</div></div>'
+    +'<div class="field"><label>Số ngày học mỗi tuần</label><div class="radio-row" id="pDays">'
+    +[2,3,4,5,6,7].map(d=>'<button class="radio-pill'+(planSel.days===d?' on':'')+'" data-v="'+d+'">'+d+' ngày</button>').join('')+'</div></div>'
+    +'<div class="field"><label>Thời gian cho mỗi buổi học</label><div class="radio-row" id="pMins">'
+    +[15,30,45,60].map(m=>'<button class="radio-pill'+(planSel.mins===m?' on':'')+'" data-v="'+m+'">'+m+' phút</button>').join('')+'</div></div>'
+    +'<button class="btn primary" id="pBuild">Tạo lộ trình cho tôi</button></div>'
+    +'<div id="planOut" style="margin-top:18px"></div>';
+  view.innerHTML=h;
+  const bindRow=(id,key)=>{ view.querySelectorAll('#'+id+' .radio-pill').forEach(b=>b.addEventListener('click',()=>{ planSel[key]= isNaN(+b.dataset.v)? b.dataset.v : +b.dataset.v; renderPlanner(); })); };
+  bindRow('pGoal','goal'); bindRow('pDays','days'); bindRow('pMins','mins');
+  $('#pBuild').addEventListener('click',buildPlan);
+}
+function buildPlan(){
+  const totalSessions=18+CP.length; // 18 buổi + 4 chặng ôn tập
+  const weeks=Math.ceil(totalSessions/planSel.days);
+  const finish=new Date(); finish.setDate(finish.getDate()+weeks*7);
+  const fmt=d=>d.toLocaleDateString('vi-VN',{day:'numeric',month:'numeric',year:'numeric'});
+  const units=[];
+  LESSONS.forEach(l=>{ units.push('Buổi '+l.n+': '+l.title); CP.forEach(cp=>{ if(cp.after===l.n) units.push(cp.name+' (Buổi '+cp.range[0]+'–'+cp.range[1]+')'); }); });
+  units.push('Kiểm tra cuối khóa mô phỏng HSK 1');
+  let rows=''; let idx=0;
+  for(let w=1; w<=weeks && idx<units.length; w++){
+    const wk=units.slice(idx,idx+planSel.days); idx+=planSel.days;
+    rows+='<tr><td><strong>Tuần '+w+'</strong></td><td>'+wk.join('<br/>')+'</td></tr>';
+  }
+  const m=planSel.mins;
+  const split=[['Từ vựng + nghe đọc mẫu',Math.round(m*0.35)],['Ngữ pháp + ví dụ',Math.round(m*0.25)],['Hội thoại (đọc to, đóng vai)',Math.round(m*0.2)],['Flashcard + quiz cuối buổi',Math.max(5,m-Math.round(m*0.35)-Math.round(m*0.25)-Math.round(m*0.2))]];
+  const goalNote={thi:'Mục tiêu thi HSK 1: đừng bỏ qua các chặng ôn tập và hãy làm bài kiểm tra cuối khóa ít nhất 2 lần trước ngày thi; điểm đạt là 60%.',
+    giao:'Mục tiêu giao tiếp: ở mỗi buổi, hãy đọc to phần hội thoại ít nhất 3 lần và thử tự đóng cả hai vai trước khi xem bản dịch.',
+    dulich:'Mục tiêu du lịch: ưu tiên thuộc lòng Bài 7 (ngày tháng), Bài 8 (mua sắm), Bài 11 (giờ giấc) và Bài 15 (phương tiện) — bốn bài dùng nhiều nhất khi đi lại.',
+    sothich:'Mục tiêu sở thích: giữ nhịp đều quan trọng hơn học nhanh. Nếu một buổi thấy nặng, cứ chia buổi đó làm hai ngày, đừng bỏ dở giữa chừng.'}[planSel.goal];
+  $('#planOut').innerHTML='<div class="card"><h3 style="margin-top:0">Lộ trình của bạn</h3>'
+    +'<p>Với <strong>'+planSel.days+' ngày/tuần</strong>, mỗi buổi <strong>'+m+' phút</strong>, bạn sẽ hoàn thành 18 buổi + 4 chặng ôn tập + bài kiểm tra cuối khóa trong khoảng <strong>'+weeks+' tuần</strong> — dự kiến xong vào <strong>'+fmt(finish)+'</strong>.</p>'
+    +'<p class="muted">'+goalNote+'</p>'
+    +'<h3>Cách chia '+m+' phút trong một buổi học</h3>'
+    +'<table class="plan-table">'+split.map(s=>'<tr><td>'+s[0]+'</td><td><strong>'+s[1]+' phút</strong></td></tr>').join('')+'</table>'
+    +'<h3>Kế hoạch theo tuần</h3><table class="plan-table"><tr><th style="width:90px">Tuần</th><th>Nội dung</th></tr>'+rows+'</table>'
+    +'<div class="row" style="margin-top:14px"><button class="btn primary" id="planStart">Bắt đầu Buổi 1 ngay</button></div></div>';
+  $('#planStart').addEventListener('click',()=>go('lesson',1));
+  $('#planOut').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ================= ĐIỀU HƯỚNG CHÍNH ================= */
+function render(){
+  if(state.view==='home') renderHome();
+  else if(state.view==='lesson') renderLesson();
+  else if(state.view==='review') renderReview();
+  else if(state.view==='final') renderFinal();
+  else if(state.view==='notebook') renderNotebook();
+  else if(state.view==='planner') renderPlanner();
+}
+renderSidebar();
+render();
+</script>
+</body>
+</html>
